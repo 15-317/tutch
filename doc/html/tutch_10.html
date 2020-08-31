@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on October, 24  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Tutch User's Guide: Emacs Quickstart</TITLE>
+
+<META NAME="description" CONTENT="Tutch User's Guide: Emacs Quickstart">
+<META NAME="keywords" CONTENT="Tutch User's Guide: Emacs Quickstart">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC38"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC37"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC39"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> B. Emacs Quickstart </H1>
+<!--docid::SEC38::-->
+<P>
+
+Emacs is a colossus: It is a plain text editor looking back on a long
+history, with a version number in the twentieth, a confusing abundance
+of functions and a stone age internal programming language called Emacs
+LISP. There are some expansions of the abbreviation "Emacs", e.g.,
+<STRONG>E</STRONG>ight <STRONG>M</STRONG>egs <STRONG>A</STRONG>nd <STRONG>C</STRONG>onstantly
+<STRONG>S</STRONG>wapping, or
+<STRONG>E</STRONG>scape-<STRONG>M</STRONG>eta-<STRONG>A</STRONG>lt-<STRONG>C</STRONG>ontrol-<STRONG>S</STRONG>hift,
+making fun of its memory appetite or hotkey combinations.
+</P><P>
+
+The complexity of Emacs may deter the novice. But once you made your
+first steps and learned your first control sequences, you will realize
+how big the benefit of using Emacs is and how excellent support you can
+get by its various plug-ins. These packages make Emacs into a highly
+efficient tool for Java programming, LaTeX type setting or HTML editing.
+</P><P>
+
+Break the barrier now! Dare to dive into Emacs!
+</P><P>
+
+This short tutorial is meant to guide you in your first steps and give
+you all the knowledge to beat Notepad users in speed and safety.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC39"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC38"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC40"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> B.1 Starting Emacs, File Commands </H2>
+<!--docid::SEC39::-->
+<P>
+
+Emacs exists in different layouts, we use <KBD>xemacs</KBD>. Just start it
+from the shell, optionally supply a file name. E.g.,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ xemacs assignments/prop.tut &#38;
+</pre></td></tr></table></P><P>
+
+You are probably used to the reappearing menu pattern from GUIs: File,
+Edit, View, Help. Emacs has a structure that looks similar in the
+beginning, but turns out to be badly organized--flooding you with a lot of
+irrelevant functions, but hiding the most basic editing commands like
+cut &#38; paste from you. In Emacs you better not use the menus, but learn the
+control key sequences instead. This actually is to your benefit: You
+will find it much faster after some time.
+</P><P>
+
+The Emacs community has a special tradition how to name the key
+modifiers Control and Alternate:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>C-x</KBD>
+<DD>     Control-x
+<DT><KBD>M-x</KBD>
+<DD>     Meta-x, i.e., Alternate-x or Escape-x
+</DL>
+<P>
+
+Here is a list of the basic file commands:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>C-x C-f</KBD>
+<DD>      Open... 
+      (<STRONG>F</STRONG>ind file)
+<DT><KBD>C-x C-s</KBD>
+<DD>      Save 
+<DT><KBD>C-x C-w</KBD>
+<DD>      Save as... (<STRONG>W</STRONG>rite file)
+<DT><KBD>C-x s</KBD>
+<DD>      Save all...
+<DT><KBD>C-x k</KBD>
+<DD>      Close... (<STRONG>K</STRONG>ill buffer)
+<DT><KBD>C-x C-c</KBD>
+<DD>      Exit (<STRONG>C</STRONG>lose emacs)
+</DL>
+<P>
+
+Most interactive commands like "find file" or "write file" prompt for
+input in the so-called <EM>mini buffer</EM>, the last line of the emacs
+window. The minibuffer supports edit commands like cut &#38; paste and, what
+is very comfortable, the file name completion known from Unix shells:
+Just press the <KBD>tab</KBD> key to complete a filename, and <KBD>space</KBD> to
+get a list of possible completions, from which you can select one with
+the mouse. Navigating through your file structure with the keyboard and
+completion is much faster than double-clicking through file dialogs. The
+minibuffer also facilitates a history: repeated <KBD>up</KBD> brings back the
+last inputs. Minibuffer commands:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>tab</KBD>
+<DD>        Filename completion
+<DT><KBD>space</KBD>
+<DD>        List completions
+<DT><KBD>up</KBD>
+<DD>        History invokation
+</DL>
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC40"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC39"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC41"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> B.2 Editing Commands </H2>
+<!--docid::SEC40::-->
+<P>
+
+Cursor movement and basic editing is almost identical to Windows
+editors. Here is a list of useful deleting commands:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>C-d</KBD>
+<DD>        Delete (to the right)
+<DT><KBD>M-d</KBD>
+<DD>        Delete word
+<DT><KBD>C-k</KBD>
+<DD>        Delete to the end of the line (<STRONG>K</STRONG>ill characters)
+</DL>
+<P>
+
+Essential for editing is cut &#38; paste. All deleting commands that delete
+more than one character are indeed cut-commands. They accumulate the
+killed characters in the cut buffer until you move the cursor with
+other commands. If you start cutting more text then, the cut buffer
+will be emptied before accumulating the new characters. Another way to
+cut is to mark text and killing the selection, <EM>region</EM> in Emacs
+terminology. Here are the keys for cut &#38; paste:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>C-space</KBD>
+<DD>        Start selection
+<DT><KBD>C-w</KBD>
+<DD>        Cut
+<DT><KBD>M-w</KBD>
+<DD>        Copy 
+<DT><KBD>C-y</KBD>
+<DD>        Paste (<STRONG>y</STRONG>ank)
+<DT><KBD>C-_</KBD>
+<DD>        Undo
+</DL>
+<P>
+
+Usually you will cut text by a sequence of <KBD>C-k</KBD> commands or by
+<KBD>C-space</KBD>, marking a region and <KBD>C-w</KBD> and then paste it back
+with <KBD>C-y</KBD>.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC41"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC40"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC42"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> B.2.1 Find and Replace </H3>
+<!--docid::SEC41::-->
+<P>
+
+<DL COMPACT>
+<DT><KBD>C-s</KBD>
+<DD>        Find... (<STRONG>S</STRONG>earch)
+<DT><KBD>C-s C-s</KBD>
+<DD>        Find again 
+<DT><KBD>M-%</KBD>
+<DD>        Replace...
+<DT><KBD>C-g</KBD>
+<DD>        Abort
+</DL>
+<P>
+
+Find and replace always start at the cursor position.
+If you want to move to the next occurence in a search, just hit
+<KBD>C-s</KBD> again. 
+</P><P>
+
+After entering text and replacement you are prompted at each occurrence
+whether to replace or not. You have the options <KBD>y</KBD>es, <KBD>n</KBD>o,
+<KBD>!</KBD> to replace all and <KBD>C-g</KBD> to abort. (Abort and undo work in
+all contexts.)
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC42"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC41"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC43"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> B.2.2 Indentation </H3>
+<!--docid::SEC42::-->
+<P>
+
+Many Emacs plug-ins (<EM>modes</EM> in Emacs terminology) provide special
+indentation modules for the supported programming language. You invoke
+these modules by:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>tab</KBD>
+<DD>        Indent line
+<DT><KBD>M-C-\</KBD>
+<DD>        Indent region
+</DL>
+<P>
+
+If you do not have a special Emacs mode for you file syntax, you have to
+indent manually. To indent a region, mark it and indent it with <KBD>C-x
+tab</KBD>. The region then becomes <EM>inactive</EM>, but you can reactivate it
+with <KBD>M-C-z</KBD> and indent it for one more column. A better way is to
+supply an <EM>argument</EM> to the indentation command and indent the
+region as far as you want in one step. You can provide arguments to
+commands by <KBD>C-u &#60;arg&#62;</KBD>. Examples:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>C-u 4 C-x tab</KBD>
+<DD>        Indent the region by four columns.
+<DT><KBD>C-u -2 C-x tab</KBD>
+<DD>        Unindent the region by two columns.
+</DL>
+<P>
+
+A good default indentation is provided in the "indented text mode". You
+can switch to it by invoking the command `<SAMP>indented-text-mode</SAMP>',
+which has no key sequence binding. Commands without a key sequence bound
+to them are launched by <KBD>M-x &#60;command&#62;</KBD>. Completion with <KBD>tab</KBD>
+also works for commands, therefore type:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>M-x indented tab
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC43"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC42"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC44"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> B.3 Editing Several Files </H2>
+<!--docid::SEC43::-->
+<P>
+
+Emacs is designed for convenient editing of several files at a time. It
+has a clean philosophy of "multi editing", by distinguishing
+<EM>buffers</EM>, <EM>frames</EM> and <EM>windows</EM>.
+</P><P>
+
+<DL COMPACT>
+
+<DT>Buffer
+<DD>        Data structure to hold a file to edit or a process to
+        interact.
+<P>
+
+<DT>Frame
+<DD>        An Emacs "window" (in standard terminology) with title and menu
+        bar. It contains one or more <EM>windows</EM> (in
+        Emacs terminology).
+<P>
+
+<DT>Window
+<DD>        A horizontal part of the frame (usually the whole free area or
+        half of it) with a status bar displaying file name etc. 
+        A window displays one buffer. Several windows can display the
+        same buffer.
+<P>
+
+</DL>
+<P>
+
+Here is some commands to change the buffer displayed in the current
+window:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>M-C-l</KBD>
+<DD>        Switch back to the previously displayed buffer.
+<DT><KBD>C-x b</KBD>
+<DD>        Switch to entered buffer (completion with <KBD>tab</KBD> works)
+<DT><KBD>C-x C-b</KBD>
+<DD>        Display buffer list.
+<DT><KBD>C-x k</KBD>
+<DD>        Kill buffer.
+</DL>
+<P>
+
+You will find that you often need <KBD>M-C-l</KBD>. An alternative to
+<KBD>C-x b</KBD> is <KBD>C-x C-f</KBD>, since the latter does not load the file
+again if it already occupies one buffer. Window and frame commands:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>C-x 2</KBD>
+<DD>        Split window into two
+<DT><KBD>C-x 1</KBD>
+<DD>        Unsplit window (keep this)
+<DT><KBD>C-x 0</KBD>
+<DD>        Unsplit window (keep others)
+<DT><KBD>C-tab</KBD>
+<DD>        Switch window
+<DT><KBD>C-x 5 2</KBD>
+<DD>        New frame
+<DT><KBD>C-x 5 0</KBD>
+<DD>        Delete frame
+</DL>
+<P>
+
+All these commands do not affect the buffers. Deleting a window does not
+kill the buffer.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC44"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC43"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC45"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> B.4 Modes and Customization </H2>
+<!--docid::SEC44::-->
+<P>
+
+This is where the big potential of Emacs is present, and here it gets
+complicated. We focus on some very basic issues.
+</P><P>
+
+An Emacs <EM>mode</EM> is a plug-in written in Emacs LISP that controls
+the behaviour of the buffer it is attached to. Usually it provides
+indentation, syntax highlighting and hotkeys for compiling and jumping
+to error locations. Sophisticated modes turn Emacs into a full-fledged
+IDE (integrated development environment). Emacs decides on base of the
+file extension which editing mode is loaded.
+</P><P>
+
+Useful modes for editing Tutch files are the indented text, line and
+column number mode. They can be used in parallel and are invoked by
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>M-x indented-text-mode return
+M-x line-number-mode return
+M-x column-number-mode return
+</pre></td></tr></table></P><P>
+
+The indented text mode is one of the <EM>major</EM> modes, which are
+exclusive. The other two are <EM>minor</EM> modes which can be used as
+add-ons onto any major mode. Keys for the indented text mode are:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>tab</KBD>
+<DD>        Indent line like the previous one.
+<DT><KBD>C-e C-j</KBD>
+<DD>        Start new line with indentation (use instead of <KBD>return</KBD>).
+</DL>
+<P>
+
+You can configure Emacs to load these modes automatically when loading
+`<SAMP>.tut</SAMP>'-files. Personal customization of Emacs is put into the file
+`<SAMP>~/.emacs</SAMP>'. Here are the necessary lines to add:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(command-execute 'line-number-mode)   
+(command-execute 'column-number-mode)
+
+(setq auto-mode-alist 
+  (append
+    '(("\\.tut$" . indented-text-mode)  
+      ("\\.req$" . indented-text-mode))
+    auto-mode-alist))
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC45"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC44"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> B.5 More Editing Commands </H2>
+<!--docid::SEC45::-->
+<P>
+
+Here is a random list of some useful commands:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>M-q</KBD>
+<DD>        Justify paragraph.
+<DT><KBD>M-t</KBD>
+<DD>        <STRONG>T</STRONG>ranspose words.
+<DT><KBD>M-- M-l</KBD>
+<DD>        Make word <STRONG>l</STRONG>ower case.
+<DT><KBD>M-- M-u</KBD>
+<DD>        Make word all <STRONG>u</STRONG>pper case.
+<DT><KBD>M-- M-c</KBD>
+<DD>        Make word <STRONG>c</STRONG>apital.
+</DL>
+<P>
+
+Here are more deleting commands:
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>M-backspace</KBD>
+<DD>        Backspace word
+<DT><KBD>M-k</KBD>
+<DD>        Delete paragraph
+<DT><KBD>M-\</KBD>
+<DD>        Delete spaces
+<DT><KBD>M-space</KBD>
+<DD>        Delete spaces, leave one
+<DT><KBD>M-^</KBD>
+<DD>        Join two lines
+</DL>
+<P>
+
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Andreas Abel</I> on <I>October, 24  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

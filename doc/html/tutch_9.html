@@ -1,0 +1,891 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on October, 24  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Tutch User's Guide: Reference</TITLE>
+
+<META NAME="description" CONTENT="Tutch User's Guide: Reference">
+<META NAME="keywords" CONTENT="Tutch User's Guide: Reference">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC25"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_8.html#SEC24"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC26"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_8.html#SEC23"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> A. Reference </H1>
+<!--docid::SEC25::-->
+<P>
+
+This part is meant as a brief, but complete reference to Tutch. 
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC26"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC25"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC27"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> A.1 Command Line Syntax </H2>
+<!--docid::SEC26::-->
+<P>
+
+The proof checker <EM>Tutch</EM> is invoked by
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ /afs/andrew/scs/cs/15-399/bin/tutch [options] [files]
+</pre></td></tr></table>The files are extended by `<SAMP>.tut</SAMP>' if they do not have an extension
+already. Options are:
+<DL COMPACT>
+<DT><KBD>-h, --help</KBD>
+<DD>Print help message.
+<DT><KBD>-q, --quiet</KBD>
+<DD>Be quiet, print only version, file access and error messages.
+<DT><KBD>-Q, --Quiet</KBD>
+<DD>Be really quiet, print only error messages.
+<DT><KBD>-r, --requirements <TT>file</TT></KBD>
+<DD>Check Tutch files against requirements in <TT>file</TT>
+resp. <TT><TT>file</TT>.req</TT> (this extension is added if no extension is
+given) and print out check list.  The path `<SAMP>/afs/andrew/scs/cs/15-399/req</SAMP>' for
+<TT>file</TT> is assumed unless <TT>file</TT> starts with a `<SAMP>.</SAMP>' or
+`<SAMP>/</SAMP>'. If no files are given, <TT><TT>file</TT>.tut</TT> is assumed as input
+file.
+<DT><KBD>-v, --verbose</KBD>
+<DD>Be verbose, print justification for each proof line.
+<DT><KBD>-V, --Verbose</KBD>
+<DD>Print every available message.
+</DL>
+<P>
+
+Assignments submission is possible via
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ /afs/andrew/scs/cs/15-399/bin/submit -r file [options] [files]
+</pre></td></tr></table>Options are the same as for <KBD>tutch</KBD>, but <KBD>-r</KBD> is mandatory.
+The status of a submission can be checked via
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ /afs/andrew/scs/cs/15-399/bin/status file
+</pre></td></tr></table>This retrieves the status of the submission <TT>file</TT> handed in via
+<KBD>submit -r file ...</KBD>.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC27"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC26"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC28"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> A.2 Tutch File Syntax </H2>
+<!--docid::SEC27::-->
+<P>
+
+Tutch recognizes a set of <EM>special symbols</EM>. They do not have to be
+separated by spaces from the remaining code, but serve as separators
+themselves. These symbols are
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>( ) [ ] ; : = ~ &#38; | =&#62; &#60;=&#62;
+</pre></td></tr></table>Furthermore there are <EM>reserved words</EM> which cannot be used as
+identifiers:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>T F proof begin end
+</pre></td></tr></table><EM>Identifiers</EM> are made up of letters `<SAMP>a-zA-Z</SAMP>', digits
+`<SAMP>0-9</SAMP>' underscores `<SAMP>_</SAMP>' and primes `<SAMP>'</SAMP>'.
+</P><P>
+
+<EM>Atoms</EM> <EM>Q</EM> are identifiers that
+start with capital letter. <EM>Propositions</EM> <EM>A</EM>, <EM>B</EM> have the following grammar
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>A</EM>, <EM>B</EM> ::= T             % Truth     
+       | F             % Falsehood
+       | <EM>Q</EM>             % Atom
+       | ~<EM>A</EM>            % Negation
+       | <EM>A</EM> &#38; <EM>B</EM>         % Conjunction
+       | <EM>A</EM> | <EM>B</EM>         % Disjunction
+       | <EM>A</EM> =&#62; <EM>B</EM>        % Implication
+       | <EM>A</EM> &#60;=&#62; <EM>B</EM>       % Equivalence
+       | (<EM>A</EM>)           % Parentheses
+</pre></td></tr></table>The binary operators `<SAMP>&#38;</SAMP>', `<SAMP>|</SAMP>' and `<SAMP>=&#62;</SAMP>' are right
+associative, `<SAMP>&#60;=&#62;</SAMP>' is non-associative. Binding strength decreases
+in this order:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>~ &#38; | =&#62; &#60;=&#62;
+</pre></td></tr></table>A <EM>hypothesis</EM> <EM>H</EM> is just a proposition. A <EM>proof entry</EM>
+<EM>E</EM> is either a line or a frame. A <EM>proof</EM> <EM>P</EM> is a
+non-empty list of entries.
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>H</EM>    ::= <EM>A</EM>             % Hypothesis
+<EM>E</EM>    ::= <EM>A</EM>             % Line
+       | [ <EM>H</EM>; <EM>P</EM> ]      % Frame
+<EM>P</EM>    ::= <EM>E</EM>             % Final step
+       | <EM>E</EM>; <EM>P</EM>          % Step and remaining proof
+</pre></td></tr></table>A <EM>proof name</EM> <VAR>x</VAR> is a non-capital identifier.
+A <EM>Tutch file</EM> <EM>F</EM> is a sequence of proof declarations. A
+<EM>proof declaration</EM> <EM>D</EM> has the following syntax:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>D</EM>    ::= proof <VAR>x</VAR>: <EM>A</EM> = begin <EM>P</EM> end    % Proof of <EM>A</EM> with name <VAR>x</VAR>
+<EM>F</EM>    ::=                             % Empty file
+       | <EM>D</EM>; <EM>F</EM>                        % Declaration and remaining file
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC28"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC27"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC29"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> A.2.1 Proof Terms </H3>
+<!--docid::SEC28::-->
+<P>
+
+We extend our list of special symbols and reserved words by the following:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>, annotated term fst snd inl inr case of fn abort
+</pre></td></tr></table>Proof terms for propositional logic are formed according to the
+following grammar:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>M</EM>, <EM>N</EM> ::= <VAR>x</VAR>             % Variable
+       | (<EM>M</EM>, <EM>N</EM>)        % Pair
+       | fst <EM>M</EM>         % First projection
+       | snd <EM>M</EM>         % Second projection
+       | inl <EM>M</EM>         % Left injection
+       | inr <EM>M</EM>         % Right injection
+       | case <EM>M</EM> of inl <VAR>x</VAR> =&#62; <EM>N</EM> | inr <VAR>y</VAR> =&#62; <EM>O</EM> end % Case analysis
+       | fn <VAR>x</VAR> =&#62; <EM>M</EM>     % Abstraction
+       | <EM>M</EM> <EM>N</EM>           % Application
+       | ()            % Empty tuple (proof of truth)
+       | abort <EM>M</EM>       % Falsehood elimination
+       | <EM>M</EM> : A         % Annotation
+</pre></td></tr></table></P><P>
+
+Application is a "invisible" left-associative infix operator. It has
+maximal binding strength, along with the prefix operators `<SAMP>fst</SAMP>',
+`<SAMP>snd</SAMP>', `<SAMP>inl</SAMP>', `<SAMP>inr</SAMP>', `<SAMP>abort</SAMP>'. This enforces use of
+parentheses in most cases. E.g.,
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(fst x) ((snd x) y)
+</pre></td></tr></table>has already a minimum amount of parentheses. Abstraction `<SAMP>fn x =&#62;</SAMP>'
+binds less than application and annotation `<SAMP>:</SAMP>' least. The following
+term is syntactically correct.
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>fn y =&#62; fn x =&#62; x y : A =&#62; (A =&#62; B) =&#62; B
+</pre></td></tr></table></P><P>
+
+<EM>Annotated</EM> proofs <EM>P</EM> are proofs as defined above annotated
+with proof terms. This changes the syntax of hypotheses <EM>H</EM>
+and proof entries <EM>E</EM>.
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>H</EM>    ::= <EM>x : A</EM>         % Hypothesis
+<EM>E</EM>    ::= <EM>M : A</EM>         % Line
+       | [ <EM>H</EM>; <EM>P</EM> ]      % Frame
+<EM>P</EM>    ::= <EM>E</EM>             % Final step
+       | <EM>E</EM>; <EM>P</EM>          % Step and remaining proof
+</pre></td></tr></table></P><P>
+
+A <EM>Tutch file</EM> <EM>F</EM> now can contain proof, <EM>term</EM> and
+<EM>annotated proof</EM> declarations <EM>D</EM>:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>D</EM>    ::= proof ...
+       | annotated proof <VAR>x</VAR>: <EM>A</EM> = begin <EM>P</EM> end % Annotated proof of <EM>A</EM> with name <VAR>x</VAR>
+       | term <VAR>x</VAR>: <EM>A</EM> = <EM>M</EM>                      % Proof of <EM>A</EM> with name <VAR>x</VAR>
+<EM>F</EM>    ::=                             % Empty file
+       | <EM>D</EM>; <EM>F</EM>                        % Declaration and remaining file
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC29"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC28"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC30"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> A.2.2 Types and Programs </H3>
+<!--docid::SEC29::-->
+<P>
+
+New special symbols and keywords are:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>* + -&#62; :: nat bool list 0 s rec true false if then else nil val
+</pre></td></tr></table></P><P>
+
+<EM>Types</EM> <EM>T</EM>, <EM>T'</EM> have the following grammar:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>T</EM>, <EM>T'</EM> ::= 1             % Unit type     
+        | 0             % Empty type
+        | <EM>a</EM>             % Atom
+        | nat           % Natural numbers
+        | bool          % Booleans
+        | <EM>T</EM> list        % Lists of element type <EM>T</EM>
+        | <EM>T</EM> * <EM>T'</EM>        % Product
+        | <EM>T</EM> + <EM>T'</EM>        % Disjoint sum
+        | <EM>T</EM> -&#62; <EM>T'</EM>       % Function space
+        | (<EM>T</EM>)           % Parentheses
+</pre></td></tr></table>`<SAMP>list</SAMP>' is a postfix operator.
+</P><P>
+
+The binary operators `<SAMP>*</SAMP>', `<SAMP>+</SAMP>' and `<SAMP>=&#62;</SAMP>' are right
+associative. Binding strength decreases
+in this order:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>list * + -&#62;
+</pre></td></tr></table></P><P>
+
+We extend the grammar for <EM>terms</EM> by the following constructs: 
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>M</EM>, <EM>N</EM> ::= ...
+       | 0                    % Zero
+       | s <EM>M</EM>                  % Successor
+       | rec <EM>M</EM> of <VAR>f</VAR> 0 =&#62; <EM>N</EM> | <VAR>f</VAR> (s <VAR>x</VAR>) =&#62; <EM>O</EM> end       % Recursion over nat
+       | true                 % True
+       | false                % False
+       | if <EM>M</EM> then <EM>N</EM> else <EM>O</EM>   % Boolean case distinction
+
+       | nil                  % Empty list
+       | <EM>M</EM> :: <EM>N</EM>               % List construction
+       | rec <EM>M</EM> of <VAR>f</VAR> nil =&#62; <EM>N</EM> | <VAR>f</VAR> (<VAR>x</VAR> :: <VAR>xs</VAR>) =&#62; <EM>O</EM> end % Recursion over list
+</pre></td></tr></table></P><P>
+
+`<SAMP>0</SAMP>', `<SAMP>true</SAMP>', `<SAMP>false</SAMP>' and `<SAMP>nil</SAMP>' are constants,
+`<SAMP>s</SAMP>' and `<SAMP>if <I>r</I> then <I>s</I> else</SAMP>' are prefix operators and
+`<SAMP>::</SAMP>' is an infix operator with lower precedence than the prefix
+operators or application.
+</P><P>
+
+We add one new declaration to the syntax of tutch files:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>D</EM>    ::=  ...
+       | val <VAR>x</VAR>: <EM>T</EM> = <EM>M</EM>                % Program of type <EM>T</EM> with name <VAR>x</VAR>
+<EM>F</EM>    ::=                             % Empty file
+       | <EM>D</EM>; <EM>F</EM>                        % Declaration and remaining file
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC30"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC29"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC31"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> A.2.3 First-Order Logic </H3>
+<!--docid::SEC30::-->
+<P>
+
+Reasoning in First-Order Logic (FOL) requires handling of universally and
+existentially quantified propositions. New special symbols are
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>! ? .
+</pre></td></tr></table>We extend our definition of propositions by
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>A</EM>, <EM>B</EM> ::= ...
+       | <EM>R</EM> <EM>M1</EM>...<EM>Mn</EM>     % Instantiation
+       | !<VAR>x</VAR>:<EM>T</EM>. <EM>A</EM>       % Universal quantification
+       | ?<VAR>x</VAR>:<EM>T</EM>. <EM>A</EM>       % Existential quantification
+</pre></td></tr></table>Relation symbols <EM>R</EM> are capital identifiers. Only they can be
+instantiated by terms <EM>Mi</EM>, e.g. `<SAMP>A(x)</SAMP>', which is the same as
+`<SAMP>A x</SAMP>'. Instantiation binds strongest, as strong as application and
+the prefix operators for terms <EM>M</EM>.
+</P><P>
+
+Quantification `<SAMP>!<VAR>x</VAR>:<EM>T</EM></SAMP>'
+resp. `<SAMP>?<VAR>x</VAR>:<EM>T</EM>. <EM>A</EM></SAMP>' is treated as a prefix operator
+with minimal precedence (like lambda abstraction). Ordered by binding
+strength, the operators that appear in propositions are:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>!x:T. resp. ?x:T., &#60;=&#62;, =&#62;, |, &#38;, ~, instantiation
+</pre></td></tr></table>The `<SAMP>proof</SAMP>' declaration supports now also proofs in FOL. Two
+judgments can form a statement of the proof: an assertion <EM>A</EM>
+(representing `<SAMP>A true</SAMP>' and a
+term declaration <EM>M : T</EM> expressing "<EM>M</EM> has type
+<EM>T</EM>". In the same way there are now two forms of hypotheses:
+<EM>x : T</EM>, which introduces a new parameter <EM>x</EM> into the proof,
+and <EM>A</EM> which assumes that <EM>A</EM> is true. Furthermore one frame
+can introduce several hypotheses, separated by commas. The grammar for proofs
+is the following:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>H</EM>    ::= <EM>A</EM>             % Hypothesis introduction
+       | <EM>x : T</EM>         % Parameter introduction
+<EM>Hs</EM>   ::= <EM>H</EM>             % Last hypothesis
+       | <EM>H</EM>, <EM>Hs</EM>         % Several hypotheses
+<EM>E</EM>    ::= <EM>A</EM>             % Line: Assertion
+       | <EM>M : T</EM>         % Line: Term declaration
+       | [ <EM>Hs</EM>; <EM>P</EM> ]     % Frame
+<EM>P</EM>    ::= <EM>E</EM>             % Final step
+       | <EM>E</EM>; <EM>P</EM>          % Step and remaining proof
+</pre></td></tr></table>All variables in a proposition that appears in a proof must be bound by
+quantifiers or be (visible) parameters introduced by frames.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC31"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC30"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC32"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> A.2.4 Arithmetic </H3>
+<!--docid::SEC31::-->
+<P>
+
+We add the two binary relations "less than" and "equal to" to our
+definition of propositions
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>A</EM>, <EM>B</EM> ::= ...
+       | <EM>M</EM> &#60; <EM>N</EM>         % <EM>M</EM> less than <EM>N</EM>
+       | <EM>M</EM> = <EM>N</EM>         % <EM>M</EM> equal to <EM>N</EM>
+</pre></td></tr></table>These relations allow us to prove properties about them and defined
+functions by induction.
+</P><P>
+
+Unfortunately, `<SAMP>=</SAMP>' introduces a ambiguity into our syntax, e.g. in
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>proof Ex2 : !x:nat. 0 &#60; x =&#62; ?y:nat. s(y) = x = ...
+</pre></td></tr></table>While parsing the first `<SAMP>=</SAMP>', it is not clear whether it marks the
+end of the proposition or stands for the equality relation. This
+ambiguity is resolved by the following rule:
+<BLOCKQUOTE>
+Whenever the expression before `<SAMP>=</SAMP>' is <EM>definitively</EM> a term,
+then `<SAMP>=</SAMP>' is parsed as equality. In all other cases it is parsed as the end
+of the declaration. 
+</BLOCKQUOTE>
+In our case `<SAMP>s(y)</SAMP>' is definitively a term. At the next `<SAMP>=</SAMP>',
+the expression on the left of it is `<SAMP>s(y)=x</SAMP>', which is a
+proposition, not a term. Thus the end of the declaration is correctly
+recognized. The same happens in the following example:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>val nth : nat -&#62; tau list -&#62; tau -&#62; tau = ...
+</pre></td></tr></table>The expression `<SAMP>tau</SAMP>' left of the equality symbol is a variable. It
+could be a term or a type variable. Thus it is not definitely a term,
+and the parser finished parsing the type of `<SAMP>nth</SAMP>' here.
+<P>
+
+Not correctly resolved is the ambiguity in this case:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>proof refl : !x:nat. x = x = ...
+</pre></td></tr></table>Since `<SAMP>x</SAMP>' is either a term variable or a type variable from the
+perspective of mere syntax, it is not definitively a term. Thus the
+parser detects falsely the end of the declaration of `<SAMP>refl</SAMP>'. The
+parser will then try to interpret `<SAMP>!x:nat.x</SAMP>' as a proposition, and
+fail with the following error message:
+<BLOCKQUOTE>
+Category mismatch: x is a variable, but a proposition is expected in this place
+</BLOCKQUOTE>
+To work around this bug, insert parentheses somewhere around the
+equality expression, e.g.
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>proof refl : !x:nat. (x = x) = ...
+</pre></td></tr></table><P>
+
+<HR SIZE="6">
+<A NAME="SEC32"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC31"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC33"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H4> A.2.4.1 Proof Terms </H4>
+<!--docid::SEC32::-->
+<P>
+
+The introduction and elimination rules for equality and less-than give
+rise to the following proof terms. All are reserved
+words:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>eq0 eqS eqE0S eqES0 eqESS less0 lessS lessE0 lessES
+</pre></td></tr></table>Of these, two are constants: <TT>eq0</TT> and <TT>less0</TT>. All other are prefix
+operators.
+For induction we reuse the `<SAMP>rec</SAMP>' construct for primitive recursion.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC33"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC32"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC34"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> A.2.5 Structural Induction </H3>
+<!--docid::SEC33::-->
+<P>
+
+We reuse `<SAMP>=</SAMP>' for equality on lists. The following proof terms
+represent the introduction and elimination rules for equality on
+lists. These are new reserved words:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>eqN eqC eqENC eqECN eqECC
+</pre></td></tr></table>Except <TT>eqN</TT>, which is a constants, all are prefix operators. The rule
+for <TT>eqC</TT> is:
+<BLOCKQUOTE>
+If <EM>M : xs = ys</EM>, then <EM><TT>eqC</TT> M : x::xs = x::ys</EM> for an
+arbitrary <EM>x</EM>.
+</BLOCKQUOTE>
+Here we assume that all these lists <EM>xs, ys, x::xs, x::ys</EM> are
+well-formed and of the same type.
+<P>
+
+<HR SIZE="6">
+<A NAME="SEC34"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC33"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC35"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> A.2.6 Summary </H3>
+<!--docid::SEC34::-->
+<P>
+
+This sections summarizes the syntax specification given in the previous
+sections. 
+</P><P>
+
+<STRONG>Special Symbols:</STRONG>
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>( ) [ ] ; : = ~ &#38; | =&#62; &#60;=&#62; , * + -&#62; :: ! ? . &#60;
+</pre></td></tr></table></P><P>
+
+<STRONG>Reserved words:</STRONG>
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>annotated proof term val begin end 
+T F nat bool list
+inl inr case of fst snd fn abort
+0 s rec true false if then else nil 
+eq0 eqS eqE0S eqES0 eqESS 
+less0 lessS lessE0 lessES
+eqN eqC eqENC eqECN eqECC
+</pre></td></tr></table></P><P>
+
+<STRONG>Proposition expressions:</STRONG>
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>A</EM>, <EM>B</EM> ::= T             % Truth     
+       | F             % Falsehood
+       | <EM>Q</EM>             % Atom
+       | ~<EM>A</EM>            % Negation
+       | <EM>A</EM> &#38; <EM>B</EM>         % Conjunction
+       | <EM>A</EM> | <EM>B</EM>         % Disjunction
+       | <EM>A</EM> =&#62; <EM>B</EM>        % Implication
+       | <EM>A</EM> &#60;=&#62; <EM>B</EM>       % Equivalence
+       | <EM>R</EM> <EM>M1</EM>...<EM>Mn</EM>     % Instantiation
+       | !<VAR>x</VAR>:<EM>T</EM>. <EM>A</EM>       % Universal quantification
+       | ?<VAR>x</VAR>:<EM>T</EM>. <EM>A</EM>       % Existential quantification
+       | <EM>M</EM> &#60; <EM>N</EM>         % <EM>M</EM> less than <EM>N</EM>
+       | <EM>M</EM> = <EM>N</EM>         % <EM>M</EM> equal to <EM>N</EM>
+</pre></td></tr></table></P><P>
+
+<STRONG>Type expressions:</STRONG>
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>T</EM>, <EM>T'</EM>::= 1             % Unit type     
+       | 0             % Empty type
+       | <EM>a</EM>             % Atom
+       | nat           % Natural numbers
+       | bool          % Booleans
+       | <EM>T</EM> list        % Lists of element type <EM>T</EM>
+       | <EM>T</EM> * <EM>T'</EM>        % Product
+       | <EM>T</EM> + <EM>T'</EM>        % Disjoint sum
+       | <EM>T</EM> -&#62; <EM>T'</EM>       % Function space
+</pre></td></tr></table></P><P>
+
+<STRONG>Terms:</STRONG>
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>M</EM>, <EM>N</EM> ::= <VAR>x</VAR>             % Variable
+       | (<EM>M</EM>, <EM>N</EM>)        % Pair
+       | fst <EM>M</EM>         % First projection
+       | snd <EM>M</EM>         % Second projection
+       | inl <EM>M</EM>         % Left injection
+       | inr <EM>M</EM>         % Right injection
+       | case <EM>M</EM> of inl <VAR>x</VAR> =&#62; <EM>N</EM> | inr <VAR>y</VAR> =&#62; <EM>O</EM> end      % Case analysis
+       | fn <VAR>x</VAR> =&#62; <EM>M</EM>     % Abstraction
+       | <EM>M</EM> <EM>N</EM>           % Application
+       | ()            % Empty tuple (proof of truth)
+       | abort <EM>M</EM>       % Falsehood elimination
+       | <EM>M</EM> : A         % Annotation
+       | 0             % Zero
+       | s <EM>M</EM>           % Successor
+       | rec <EM>M</EM> of <VAR>f</VAR> 0 =&#62; <EM>N</EM> | <VAR>f</VAR> (s <VAR>x</VAR>) =&#62; <EM>O</EM> end       % Recursion over nat
+       | true          % True
+       | false         % False
+       | if <EM>M</EM> then <EM>N</EM> else <EM>O</EM>                    % Boolean case distinction
+       | nil           % Empty list
+       | <EM>M</EM> :: <EM>N</EM>        % List construction
+       | rec <EM>M</EM> of <VAR>f</VAR> nil =&#62; <EM>N</EM> | <VAR>f</VAR> (<VAR>x</VAR> :: <VAR>xs</VAR>) =&#62; <EM>O</EM> end % Recursion over list
+       | eq0           % Proof of <EM>0 = 0</EM>
+       | eqS <EM>M</EM>         % Proof of <EM>M = N</EM> |- <EM>s M = s N</EM>
+       | eqE0S <EM>M</EM>       % Elimination of <EM>0 = s N</EM>
+       | eqES0 <EM>M</EM>       % Elimination of <EM>s M = 0</EM>
+       | eqESS <EM>M</EM>       % Proof of <EM>s M = s N</EM> |- <EM>M = N</EM>
+       | less0 <EM>M</EM>       % Proof of <EM>0 &#60; s M</EM>
+       | lessS <EM>M</EM>       % Proof of <EM>M &#60; N</EM> |- <EM>s M &#60; s N</EM>
+       | lessE0 <EM>M</EM>      % Elimination of <EM>s M = 0</EM>
+       | lessES <EM>M</EM>      % Proof of <EM>s M = s N</EM> |- <EM>M = N</EM>
+       | eqN           % Proof of <EM>nil = nil</EM>
+       | eqC <EM>M</EM>         % Proof of <EM>Ms = Ns</EM> |- <EM>M::Ms = M::Ns</EM>
+       | eqENC <EM>M</EM>       % Elimination of <EM>nil = M::Ms</EM>
+       | eqECN <EM>M</EM>       % Elimination of <EM>M::Ms = nil</EM>
+       | eqECC <EM>M</EM>       % Proof of <EM>M::Ms = N::Ns</EM> |- <EM>Ms = Ns</EM>
+</pre></td></tr></table></P><P>
+
+<STRONG>Operator precedence:</STRONG>
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>_ _ (application) list inl inr fst ... (all atomar prefix ops)
+::
+if M then N else
+let (x,u) = M in 
+fn x =&#62;
+&#60;
+=
+~ 
+&#38; * 
+| +
+=&#62; -&#62;
+&#60;=&#62;
+!x:t. ?x:t.
+</pre></td></tr></table></P><P>
+
+<STRONG>Proofs:</STRONG>
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>H</EM>    ::= <EM>A</EM>             % Hypothesis introduction
+       | <EM>x : T</EM>         % Parameter introduction
+<EM>Hs</EM>   ::= <EM>H</EM>             % Last hypothesis
+       | <EM>H</EM>, <EM>Hs</EM>         % Several hypotheses
+<EM>E</EM>    ::= <EM>A</EM>             % Line: Assertion
+       | <EM>M : T</EM>         % Line: Term declaration
+       | [ <EM>Hs</EM>; <EM>P</EM> ]     % Frame
+<EM>P</EM>    ::= <EM>E</EM>             % Final step
+       | <EM>E</EM>; <EM>P</EM>          % Step and remaining proof
+</pre></td></tr></table></P><P>
+
+<STRONG>Annotated Proofs:</STRONG>
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>H</EM>    ::= <EM>x : A</EM>         % Hypothesis
+<EM>E</EM>    ::= <EM>M : A</EM>         % Line
+       | [ <EM>H</EM>; <EM>P</EM> ]      % Frame
+<EM>P</EM>    ::= <EM>E</EM>             % Final step
+       | <EM>E</EM>; <EM>P</EM>          % Step and remaining proof
+</pre></td></tr></table></P><P>
+
+<STRONG>Declarations:</STRONG>
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>D</EM>    ::= proof <VAR>x</VAR>: <EM>A</EM> = begin <EM>P</EM> end    % Proof of <EM>A</EM> with name <VAR>x</VAR>
+       | annotated proof <VAR>x</VAR>: <EM>A</EM> = begin <EM>P</EM> end % Annotated proof of <EM>A</EM> with name <VAR>x</VAR>
+       | term <VAR>x</VAR>: <EM>A</EM> = <EM>M</EM>                      % Proof of <EM>A</EM> with name <VAR>x</VAR>
+       | val <VAR>x</VAR>: <EM>T</EM> = <EM>M</EM>                % Program of type <EM>T</EM> with name <VAR>x</VAR>
+<EM>F</EM>    ::=                             % Empty file
+       | <EM>D</EM>; <EM>F</EM>                        % Declaration and remaining file
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC35"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC34"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC36"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> A.3 Requirements File Syntax </H2>
+<!--docid::SEC35::-->
+<P>
+
+A requirements file <EM>F</EM> specifies proof and program tasks, but does
+not give any proofs or implementations. Grammar:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre><EM>S</EM>    ::= proof <VAR>x</VAR>: <EM>A</EM>                  % Proof specification
+       | annotated proof <VAR>x</VAR>: <EM>A</EM>        % Proof specification
+       | term <VAR>x</VAR>: <EM>A</EM>                   % Term specification
+       | val <VAR>x</VAR>: <EM>T</EM>                    % Program specification
+<EM>F</EM>    ::=                             % Empty file
+       | <EM>S</EM>; <EM>F</EM>                        % Specification and remaining file
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC36"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC35"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC37"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> A.4 Proof Checking </H2>
+<!--docid::SEC36::-->
+<P>
+
+We give an inductive definition of the proof checking algorithm
+implemented in Tutch via two judgments `<SAMP>step</SAMP>' and `<SAMP>valid</SAMP>'.
+The definition is given as in Twelf syntax.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>% Tutch proof checker for propositional logic
+
+% any infinite datatype:
+nat : type.
+z : nat.
+s : nat -&#62; nat.
+
+% Propositions
+prop : type. %name prop A.
+
+% Formation rules
+true  : prop.
+false : prop.
+atom  : nat -&#62; prop.
+&#38;     : prop -&#62; prop -&#62; prop.  %infix right 14 &#38;.
+|     : prop -&#62; prop -&#62; prop.  %infix right 13 |.
+=&#62;    : prop -&#62; prop -&#62; prop.  %infix right 12 =&#62;.
+
+% Notational definitions
+~     : prop -&#62; prop
+      = [A:prop] (A =&#62; false).  %prefix 15 ~.
+&#60;=&#62;   : prop -&#62; prop -&#62; prop
+      = [A:prop][B:prop] (A =&#62; B) &#38; (B =&#62; A) .  %infix none 11 &#60;=&#62;.
+
+% One-step inference algorithm
+step : prop -&#62; type. 
+
+nonhyp : prop -&#62; type.          % available non-hypothetical judgment
+hyp    : prop -&#62; prop -&#62; type.  % available hypothetical judgment
+
+% immediate tactic
+imm    : nonhyp A -&#62; step A.
+
+% introduction tactics
+trueI  : step true.
+&#38;I     : nonhyp A -&#62; nonhyp B -&#62; step (A &#38; B).
+|IL    : nonhyp A -&#62; step (A | B).
+|IR    : nonhyp B -&#62; step (A | B).
+=&#62;I    : hyp A B -&#62; step (A =&#62; B).
+
+% elimination tactics
+falseE : nonhyp false -&#62; step A.
+&#38;EL    : nonhyp (A &#38; B) -&#62; step A.
+&#38;ER    : nonhyp (A &#38; B) -&#62; step B.
+|E     : nonhyp (A | B) -&#62; hyp A C -&#62; hyp B C -&#62; step C.
+=&#62;E    : nonhyp (A =&#62; C) -&#62; nonhyp A -&#62; step C.
+ 
+% Proofs
+proof : type. %name proof P.
+
+final : prop -&#62; proof.                      % P, Q ::= A
+line  : prop -&#62; proof -&#62; proof.             %        | A; P
+frame : prop -&#62; proof -&#62; proof -&#62; proof.    %        | [H; P]; Q
+
+% Proof checking
+valid : proof -&#62; prop -&#62; type. 
+
+vfinal : step A -&#62; valid (final A) A.
+vline  : step A -&#62; (nonhyp A -&#62; valid P B) -&#62; valid (line A P) B.
+vframe : (nonhyp H -&#62; valid P A) -&#62; (hyp H A -&#62; valid Q B) 
+         -&#62; valid (frame H P Q) B.
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC37"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC36"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_10.html#SEC38"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> A.4.1 Proof Terms </H3>
+<!--docid::SEC37::-->
+<P>
+
+Here we give a new Twelf implementation of Tutch that includes proof terms.
+The definition and the typing rules are:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>% Tutch proof checker for propositional logic
+% Version 0.2 proof terms
+
+% any infinite datatype:
+nat : type.
+z : nat.
+s : nat -&#62; nat.
+
+% Propositions
+prop : type. %name prop A.
+
+% Formation rules
+true  : prop.
+false : prop.
+atom  : nat -&#62; prop.
+&#38;     : prop -&#62; prop -&#62; prop.  %infix right 14 &#38;.
+|     : prop -&#62; prop -&#62; prop.  %infix right 13 |.
+=&#62;    : prop -&#62; prop -&#62; prop.  %infix right 12 =&#62;.
+
+% Notational definitions
+~     : prop -&#62; prop
+      = [A:prop] (A =&#62; false).  %prefix 15 ~.
+&#60;=&#62;   : prop -&#62; prop -&#62; prop
+      = [A:prop][B:prop] (A =&#62; B) &#38; (B =&#62; A) .  %infix none 11 &#60;=&#62;.
+
+% Proof terms
+term : type.  %name term M.
+
+fst  : term -&#62; term.
+snd  : term -&#62; term.
+,    : term -&#62; term -&#62; term.   %infix right 14 ,.
+inl  : term -&#62; term.
+inr  : term -&#62; term.
+case : term -&#62; (term -&#62; term) -&#62; (term -&#62; term) -&#62; term.
+\    : (term -&#62; term) -&#62; term. %prefix 11 \.
+&nbsp;   : term -&#62; term -&#62; term.   %infix left 20 .
+&#60;&#62;   : term.                   
+abort: term -&#62; term.
+
+% Typing judgement
+in   : term -&#62; prop -&#62; type.  %infix none 0 in.
+
+% Typing rules
+&#38;I    : M in A -&#62; N in B -&#62; (M , N) in A &#38; B.
+&#38;EL   : M in A &#38; B -&#62; fst M in A.
+&#38;ER   : M in A &#38; B -&#62; snd M in B.
+|IL   : M in A -&#62; inl M in A | B.
+|IR   : M in B -&#62; inr M in A | B.
+|E    : M in A | B -&#62; ({x: term} x in A -&#62; N x in C) 
+                   -&#62; ({y: term} y in B -&#62; L y in C) 
+             -&#62; case M N L in C.
+=&#62;I   : ({x: term} x in A -&#62; M x in B) -&#62; \ M in A =&#62; B.
+=&#62;E   : M in A =&#62; B -&#62; N in A -&#62; M &nbsp;N in B.
+trueI : &#60;&#62; in true.
+falseE: M in false -&#62; abort M in C.
+</pre></td></tr></table></P><P>
+
+We add <EM>annotated proofs</EM>, which need an inference algorithm that
+respects proof terms:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>% One-step inference algorithm
+step   : term -&#62; prop -&#62; type. % %mode step +A.
+
+j0hyp  : term -&#62; prop -&#62; type.          % available non-hypothetical judgment
+j1hyp  : (term -&#62; term) -&#62; prop -&#62; prop -&#62; type.  
+                                        % available hypothetical judgment
+% immediate tactic
+imm    : j0hyp M A -&#62; step M A.
+
+% introduction tactics
+bytrueI  : step &#60;&#62; true.
+by&#38;I     : j0hyp M A -&#62; j0hyp N B -&#62; step (M , N) (A &#38; B).
+by|IL    : j0hyp M A -&#62; step (inl M) (A | B).
+by|IR    : j0hyp M B -&#62; step (inr M) (A | B).
+by=&#62;I    : j1hyp M A B -&#62; step (\ M) (A =&#62; B).
+
+% elimination tactics
+byfalseE : j0hyp M false -&#62; step (abort M) A.
+by&#38;EL    : j0hyp M (A &#38; B) -&#62; step (fst M) A.
+by&#38;ER    : j0hyp M (A &#38; B) -&#62; step (snd M) B.
+by|E     : j0hyp M (A | B) -&#62; j1hyp N A C 
+                           -&#62; j1hyp L B C 
+           -&#62; step (case M N L) C.
+by=&#62;E    : j0hyp M (A =&#62; C) -&#62; j0hyp N A -&#62; step (M &nbsp;N) C.
+</pre></td></tr></table></P><P>
+
+The checking of annotated proofs requires two judgments `<SAMP>avalid1</SAMP>'
+and `<SAMP>avalid2</SAMP>': The first returns a proof term and the second the
+proven proposition.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>% Annotated proofs
+aproof : type. %name aproof P.
+
+afinal : term -&#62; prop -&#62; aproof.                       % P ::= M : A
+aline  : term -&#62; prop -&#62; aproof -&#62; aproof.             %     | M : A; P
+aframe : prop -&#62; (term -&#62; aproof) -&#62; aproof -&#62; aproof. %     | [x: H; P]; P'
+
+% Annotated proof checking
+avalid1 : aproof -&#62; term -&#62; type. % %mode avalid1 +P -M.
+avalid2 : aproof -&#62; prop -&#62; type. % %mode avalid2 +P -A.
+
+avfinal1 : step M A -&#62; avalid1 (afinal M A) M.
+avfinal2 : step M A -&#62; avalid2 (afinal M A) A.
+avline1  : step M A -&#62; (j0hyp M A -&#62; avalid1 P N) -&#62; 
+              avalid1 (aline M A P) N.
+avline2  : step M A -&#62; (j0hyp M A -&#62; avalid2 P B) -&#62; 
+              avalid2 (aline M A P) B.
+avframe1 : ({x:term} j0hyp x H -&#62; avalid1 (P x) (M x)) -&#62;
+          ({x:term} j0hyp x H -&#62; avalid2 (P x) A) -&#62;
+          (j1hyp M H A -&#62; avalid1 Q N) -&#62; avalid1 (aframe H P Q) N.
+avframe2 : ({x:term} j0hyp x H -&#62; avalid1 (P x) (M x)) -&#62; 
+          ({x:term} j0hyp x H -&#62; avalid2 (P x) A) -&#62;
+          (j1hyp M H A -&#62; avalid2 Q B) -&#62; avalid2 (aframe H P Q) B.
+</pre></td></tr></table></P><P>
+
+<A NAME="Emacs Quickstart"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Andreas Abel</I> on <I>October, 24  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

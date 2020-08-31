@@ -1,0 +1,16 @@
+% prop3.tut
+% Classical implication definition  ~A|B => A=>B
+
+proof impDef : ~A|B => A=>B =
+begin
+[ ~A|B;
+  [ A;
+    [ ~A;
+      F;	
+      B	];	
+    [ B;
+      B	];	
+    B ];		
+  A=>B ];	
+~A|B => A=>B	
+end;

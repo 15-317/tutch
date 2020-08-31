@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on October, 24  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Tutch User's Guide: Proof Terms</TITLE>
+
+<META NAME="description" CONTENT="Tutch User's Guide: Proof Terms">
+<META NAME="keywords" CONTENT="Tutch User's Guide: Proof Terms">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC18"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC17"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_5.html#SEC19"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_5.html#SEC19"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 4. Proof Terms for Propositional Logic </H1>
+<!--docid::SEC18::-->
+<P>
+
+We support two new methods how to give proofs: <EM>Annotated proofs</EM>
+and proof <EM>terms</EM>. Annotated proofs are Tutch proofs in which each
+line is annotated by a proof term. Since proof terms record all
+information necessary to reconstruct a proof, they alone (without a
+deduction tree) are sufficient as well. For the syntax see the section
+<STRONG>Proof Terms</STRONG> in the <A HREF="tutch_9.html#SEC25">A. Reference</A>. Here are two examples,
+annotating proofs from the last chapter.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>% prop0-ann.tut
+% Modus ponens
+
+annotated proof mp: A &#38; (A=&#62;B) =&#62; B = 
+begin
+[ x : A &#38; (A=&#62;B);               
+  fst x : A;                    
+  snd x : A=&#62;B;                 
+  (snd x) (fst x) : B ];                        
+fn x =&#62; (snd x) (fst x) : A &#38; (A=&#62;B) =&#62; B         
+end;
+</pre></td></tr></table></P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>% prop3-ann.tut
+% Classical implication definition  ~A|B =&#62; A=&#62;B
+
+annotated proof classImpDef : ~A|B =&#62; A=&#62;B =
+begin
+[ x : ~A|B;
+  [ a : A;
+    [ na : ~A;
+      na a : F; 
+      abort (na a) : B ];       
+    [ b : B;
+      b : B ];  
+    case x of inl na =&#62; abort (na a) | inr b =&#62; b end : B ];            
+  fn a =&#62; case x of inl na =&#62; abort (na a) | inr b =&#62; b end : A=&#62;B ];   
+fn x =&#62; fn a =&#62; case x of inl na =&#62; abort (na a) | inr b =&#62; b end : ~A|B =&#62; A=&#62;B        
+end;
+
+term classImpDef : ~A|B =&#62; A=&#62;B =
+  fn x =&#62; fn a =&#62; case x of inl na =&#62; abort (na a) | inr b =&#62; b end;
+</pre></td></tr></table></P><P>
+
+<A NAME="Types and Programs"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_5.html#SEC19"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Andreas Abel</I> on <I>October, 24  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

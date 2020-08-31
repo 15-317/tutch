@@ -1,0 +1,25 @@
+%% Sample tutch proofs in first-order logic
+%% from lecture notes Section 4.2
+
+proof ExNotImpNotAll : (?x:t. ~A(x)) => ~!x:t. A(x) =
+begin
+[ ?x:t. ~A(x);
+  [ !x:t. A(x);
+    [ c: t, ~A(c);
+      A(c);
+      F ];
+    F ];
+  ~!x:t. A(x) ];
+(?x:t. ~A(x)) => ~!x:t. A(x); 
+end;
+
+proof AllEx : !y:t. (!x:t. A(x)) => ?x:t. A(x) =
+begin
+    [ c : t;
+      [ !x:t. A(x);
+        A(c);
+        ?x:t. A(x) ];
+      (!x:t. A(x)) => ?x:t. A(x)];
+    !y:t. (!x:t. A(x)) => ?x:t. A(x)
+end;
+

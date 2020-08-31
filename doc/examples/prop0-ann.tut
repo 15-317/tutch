@@ -1,0 +1,11 @@
+% prop0-ann.tut
+% Modus ponens
+
+annotated proof mp: A & (A=>B) => B = 
+begin
+[ x : A & (A=>B);		
+  fst x : A;			
+  snd x : A=>B;			
+  (snd x) (fst x) : B ];			
+fn x => (snd x) (fst x) : A & (A=>B) => B         
+end;

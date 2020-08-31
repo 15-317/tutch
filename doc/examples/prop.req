@@ -1,0 +1,3 @@
+proof mp: A & (A=>B) => B;
+proof impDef : ~A|B => A=>B; 
+

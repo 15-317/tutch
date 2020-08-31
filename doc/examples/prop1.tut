@@ -1,0 +1,13 @@
+%{ prop1.tut
+
+   Modus ponens.
+}%
+
+proof mp: A & (A=>B) => B = 
+begin
+[ A & (A=>B);		% 1 Assumption
+  A;			% 2 by AndE1 1
+  A=>B;			% 3 by AndE2 1  
+  B ];			% 4 by ImpE 3 2
+A & (A=>B) => B         % 5 by ImpI 4
+end;

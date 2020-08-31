@@ -1,0 +1,8 @@
+proof mp: A & (A=>B) => B = 
+begin
+[ A & (A=>B);		
+  A;			
+  A=>B;			
+  B ];			
+A & (A=>B) => B         
+end;

@@ -1,0 +1,49 @@
+val plus : nat -> nat -> nat
+         = fn x => rec x
+                    of p(0) => (fn y => y)
+                     | p(s(x')) => (fn y => s(p(x') y))
+                   end;
+
+term refl : !x:nat. (x = x) =
+  fn x => rec x of
+      f 0 => eq0
+    | f (s x') => eqS (f x')
+  end; 
+
+term lmps : !x:nat. !y:nat. plus x (s y) = s (plus x y) =
+  fn x => rec x of
+      f 0 => fn y => refl (s y)
+    | f (s x') => fn y => eqS (f x' y)
+  end; 
+
+term trans : !x:nat. !y:nat. !z:nat. (x = y) => (y = z) => (x = z) =
+  fn x => rec x of
+      f 0 => fn y => rec y of
+          g 0 => fn z => fn p => fn q => q
+	| g (s y') => fn z => fn p => fn q => eqE0S p
+      end
+    | f (s x') =>  fn y => rec y of
+          g 0 => fn z => fn p => fn q => eqES0 p
+	| g (s y') => fn z => rec z of
+              h 0 => fn p => fn q => eqES0 q
+	    | h (s z') => fn p => fn q => eqS (f x' y' z' (eqESS p) (eqESS q))
+          end
+      end
+  end;
+
+term ev : !x:nat. (?y:nat. plus y y = x) | (?y:nat. s (plus y y) = x) =
+  fn x => rec x of
+      f 0 => inl (0, eq0)
+    | f (s x') => case f x' of
+	  inl u => let (c, p) = u in inr (c, eqS p)
+	| inr w => let (d, q) = w in inl (s d, 
+	    trans (plus (s d) (s d)) (s (plus (s d) d)) (s x')
+		  (lmps (s d) d) (eqS q))
+      end
+  end;
+
+term pred' : !x:nat. ~(x = 0) => ?y:nat. s(y) = x =
+  fn x => rec x of
+      f 0 => fn u => (0, abort (u eq0))
+    | f (s x') => fn u => (x', refl (s x'))
+  end; 

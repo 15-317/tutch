@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on October, 24  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Tutch User's Guide: Arithmetic</TITLE>
+
+<META NAME="description" CONTENT="Tutch User's Guide: Arithmetic">
+<META NAME="keywords" CONTENT="Tutch User's Guide: Arithmetic">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC21"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_6.html#SEC20"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_7.html#SEC22"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_6.html#SEC20"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_8.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 7. Arithmetic </H1>
+<!--docid::SEC21::-->
+<P>
+
+Arithmetic is the first-order theory of natural numbers. This means that
+to prove properties of propositions and functions over natural numbers, 
+we reason in first-order logic plus induction and the rules for equality on
+natural numbers. Furthermore we have a relation "less than" on natural
+numbers.
+ 
+To prove an assertion <KBD>A(x)</KBD> for an arbitrary <KBD>x:nat</KBD>, we can
+make use of the fact that <KBD>x</KBD> is a natural number and eliminate it
+with rule <EM>natE</EM>, what is commonly called <EM>induction</EM>. This only
+works if we have a proof of <KBD>A(0)</KBD> and -- under the hypotheses
+<KBD>x':nat</KBD> and <KBD>A(x')</KBD> -- a proof of <KBD>A(s x')</KBD>. Example:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>proof reflEq : !x:nat. (x = x) = 
+begin
+[ x: nat;
+  0 = 0;
+  [ x': nat, x' = x';
+    s x' = s x' ];
+  x = x ];
+!x:nat. x = x;
+end;
+</pre></td></tr></table></P><P>
+
+We use parentheses around the `<SAMP>x = x</SAMP>' in the declaration to
+make clear that the `<SAMP>=</SAMP>' does not mean the end of the proposition
+and the start of the proof block. If we left them out, we would get an
+error message:
+<BLOCKQUOTE>
+Category mismatch: x is a variable, but a proposition is expected in this place
+</BLOCKQUOTE>
+Details about this ambiguity in the syntax you find in the reference. We
+are safe if we always put parentheses around equations in all
+declarations. (Within the proof this is not required!)
+<P>
+
+Tutch reconstructs the justifications as follows:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>Proving symEq: !x:nat. x = x ...
+  1  [ x: nat;                 
+  2    0 = 0;                  by =NI0
+  3    [ x': nat, x' = x';     
+  4      s x' = s x' ];        by =NIS 3
+  5    x = x ];                by NatE 1 2 4
+  6  !x:nat. x = x             by ForallI 5
+QED
+</pre></td></tr></table>Here we clearly see the use of induction in tutch. To prove our goal
+<KBD>!x:nat. x = x</KBD> we assume an arbitrary <KBD>x: nat</KBD> and prove <KBD>x
+= x</KBD> for this arbitrary <KBD>x</KBD>. First we prove the case <EM>x = 0</EM>,
+which is done in line 2. Then we prove the case <EM>x = s x'</EM> (line 4), where
+we assume that the proposition is proven for <KBD>x'</KBD> (line 3). Using
+these two subproofs, we can apply induction on <KBD>x: nat</KBD> and thus
+prove <KBD>x = x</KBD> for that arbitrary <KBD>x</KBD>.
+</P><P>
+
+As second example we will define the predecessor function for natural
+numbers and prove it correct.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>val pred : nat -&#62; nat = fn x  =&#62; rec x
+      of f(0) =&#62; 0
+       | f(s(x')) =&#62; x'
+    end;
+</pre></td></tr></table></P><P>
+
+We prove that the successor of the predecessor of a <EM>positive</EM>
+number <EM>x</EM> is equal to <EM>x</EM>. The annotated proof reads like this:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>Proving verifyPred: !x:nat. ~x = 0 =&#62; s (pred x) = x ...
+  1  [ x: nat;                                 
+  2    [ ~0 = 0;                               
+  3      0 = 0;                                  by =NI0
+  4      F;                                      by ImpE 2 3
+  5      s (pred 0) = 0 ];                       by FalseE 4
+  6    ~0 = 0 =&#62; s (pred 0) = 0;                 by ImpI 5
+  7    [ x': nat, ~x' = 0 =&#62; s (pred x') = x';  
+  8      [ ~s x' = 0;                          
+  9        !z:nat. z = z;                        by Lemma reflEq
+ 10        s x' : nat;                         
+ 11        s (pred (s x')) = s x' ];             by ForallE 9 10
+ 12      ~s x' = 0 =&#62; s (pred (s x')) = s x' ];  by ImpI 11
+ 13    ~x = 0 =&#62; s (pred x) = x ];               by NatE 1 6 12
+ 14  !x:nat. ~x = 0 =&#62; s (pred x) = x            by ForallI 13
+QED
+</pre></td></tr></table></P><P>
+
+Again we prove by induction over <KBD>x:nat</KBD>. At line 6 we have
+completed the proof for the base case <EM>x = 0</EM>. For the step case
+<EM>x = s x'</EM> (lines 7--12) we use the reflexivity lemma that we have
+proven before. Since we know that <KBD>s (pred (s x'))</KBD> evaluates to
+<KBD>s x'</KBD> by definition of <KBD>pred</KBD>, we instantiate our lemma with   
+<KBD>s x'</KBD>. To do so, we need to explicitely have the judgment <KBD>s
+x' : nat</KBD> available. Since it is not a hypothesis, we state it in line
+10. No proof is required here, the type-checker ensures that we can only
+give valid judgments of this form.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC22"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_7.html#SEC21"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_8.html#SEC23"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 7.1 Proof terms </H2>
+<!--docid::SEC22::-->
+<P>
+
+We illustrate how to prove propositions by induction with proof terms by
+these examples:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>term refl : !x:nat. (x = x) =
+  fn x =&#62; rec x of
+      f 0 =&#62; eq0
+    | f (s x') =&#62; eqS (f x')
+  end; 
+</pre></td></tr></table>A proof by induction is isomorphic to a primitive recursive function. In
+this case the corresponding function takes a natural number <KBD>x</KBD> and
+returns a proof the <KBD>x</KBD> equals <KBD>x</KBD>. In the base case, <KBD>eq0</KBD>
+is the proof for <KBD>0=0</KBD>. In the step case by induction hypothesis
+<KBD>f x'</KBD> is a proof of <KBD>x' = x'</KBD>. If we then apply <KBD>eqS</KBD> we
+get the desired proof of <KBD>s x' = s x'</KBD>.
+</P><P>
+
+As a second example we proof transitivity of equality on natural
+numbers, which shows the proper use of the elimination rules for
+equality.
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>term trans : !x:nat. !y:nat. !z:nat. (x = y) =&#62; (y = z) =&#62; (x = z) =
+  fn x =&#62; rec x of
+      f 0 =&#62; fn y =&#62; rec y of
+          g 0 =&#62; fn z =&#62; fn p =&#62; fn q =&#62; q
+        | g (s y') =&#62; fn z =&#62; fn p =&#62; fn q =&#62; eqE0S p
+      end
+    | f (s x') =&#62;  fn y =&#62; rec y of
+          g 0 =&#62; fn z =&#62; fn p =&#62; fn q =&#62; eqES0 p
+        | g (s y') =&#62; fn z =&#62; rec z of
+              h 0 =&#62; fn p =&#62; fn q =&#62; eqES0 q
+            | h (s z') =&#62; fn p =&#62; fn q =&#62; eqS (f x' y' z' (eqESS p) (eqESS q))
+          end
+      end
+  end;
+</pre></td></tr></table></P><P>
+
+UNDER CONSTRUCTION
+</P><P>
+
+<A NAME="Structural Induction"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Andreas Abel</I> on <I>October, 24  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

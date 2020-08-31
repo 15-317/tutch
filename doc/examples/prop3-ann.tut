@@ -1,0 +1,19 @@
+% prop3-ann.tut
+% Classical implication definition  ~A|B => A=>B
+
+annotated proof classImpDef : ~A|B => A=>B =
+begin
+[ x : ~A|B;
+  [ a : A;
+    [ na : ~A;
+      na a : F;	
+      abort (na a) : B ];	
+    [ b : B;
+      b : B ];	
+    case x of inl na => abort (na a) | inr b => b end : B ];		
+  fn a => case x of inl na => abort (na a) | inr b => b end : A=>B ];	
+fn x => fn a => case x of inl na => abort (na a) | inr b => b end : ~A|B => A=>B	
+end;
+
+term classImpDef : ~A|B => A=>B =
+  fn x => fn a => case x of inl na => abort (na a) | inr b => b end;

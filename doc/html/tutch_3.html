@@ -1,0 +1,698 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on October, 24  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Tutch User's Guide: Proofs in Propositional Logic</TITLE>
+
+<META NAME="description" CONTENT="Tutch User's Guide: Proofs in Propositional Logic">
+<META NAME="keywords" CONTENT="Tutch User's Guide: Proofs in Propositional Logic">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC7"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_2.html#SEC6"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC8"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_2.html#SEC3"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 3. Proofs in Propositional Logic </H1>
+<!--docid::SEC7::-->
+<P>
+
+We explain how to code natural deduction style proofs in Tutch, how to
+check validity of the coded proof and how to submit proofs as homework
+solutions. 
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="tutch_3.html#SEC8">3.1 Propositional Logic I</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Proofs of Conjunctions and Implications</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="tutch_3.html#SEC9">3.2 Propositional Logic II</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Proofs of Equivalences, Incomplete Proofs</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="tutch_3.html#SEC10">3.3 Propositional Logic III</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Proofs of Disjunctions and Negations</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="tutch_3.html#SEC11">3.4 Propositional Logic IV</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Classical Proofs</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="tutch_3.html#SEC12">3.5 Requirements and Submission</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Submitting your Proofs</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Propositional Logic I"></A>
+<HR SIZE="6">
+<A NAME="SEC8"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC9"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.1 Propositional Logic I </H2>
+<!--docid::SEC8::-->
+<P>
+
+The proof rules for conjunction <EM>&#38;</EM> and implication <EM>=&#62;</EM> in
+natural deduction are:
+</P><P>
+
+<DL COMPACT>
+<DT>AndI
+<DD>      If <EM>A true</EM> and <EM>B true</EM> then <EM>A &#38; B true</EM>
+<DT>AndEL
+<DD>      If <EM>A &#38; B true</EM> then <EM>A true</EM>
+<DT>AndER
+<DD>      If <EM>A &#38; B true</EM> then <EM>B true</EM>
+<DT>ImpI
+<DD>      If <EM>A true |- B true</EM> then <EM>A =&#62; B true</EM> 
+<DT>ImpE
+<DD>      If <EM>A =&#62; B true</EM> and <EM>A true</EM> then <EM>B true</EM>
+</DL>
+<P>
+
+The following Tutch file `<SAMP>prop0.tut</SAMP>' is a proof of the proposition 
+<EM>A &#38; (A=&#62;B) =&#62; B</EM>:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>proof mp: A &#38; (A=&#62;B) =&#62; B = 
+begin
+[ A &#38; (A=&#62;B);           
+  A;                    
+  A=&#62;B;                 
+  B ];          
+A &#38; (A=&#62;B) =&#62; B         
+end;
+</pre></td></tr></table></P><P>
+
+A proof begins with the keyword `<SAMP>proof</SAMP>', followed by a identifier
+(here `<SAMP>mp</SAMP>'), a colon `<SAMP>:</SAMP>', then the goal proposition (here
+`<SAMP>A &#38; (A=&#62;B) =&#62; B</SAMP>'), an equal symbol `<SAMP>=</SAMP>' and then the proof,
+enclosed between `<SAMP>begin</SAMP>' and `<SAMP>end</SAMP>'. The last proposition of
+the proof must match the goal.
+</P><P>
+
+Each entry of the proof is either a single assertion (like the last
+line) or a <EM>frame,</EM> enclosed between brackets `<SAMP>[</SAMP>' and
+`<SAMP>]</SAMP>'. The first proposition of a frame (here `<SAMP>A &#38; (A=&#62;B)</SAMP>') is a
+hypothesis that can be used to prove the entries of the frame, but not
+outside the frame. The entries of a frame can be assertions, separated
+by semicolons `<SAMP>;</SAMP>', or frames
+again. All entries of a frame are usable only within that frame.
+</P><P>
+
+Each entry of a proof must be derivable from previous entries by a
+single inference step, i.e., by a single proof rule application. In
+our case `<SAMP>A</SAMP>' and `<SAMP>A=&#62;B</SAMP>' are immediately derivable from the
+hypothesis `<SAMP>A &#38; (A=&#62;B)</SAMP>' by <EM>&#38;</EM>-Elimination. `<SAMP>B</SAMP>' is the result
+of eliminating `<SAMP>A=&#62;B</SAMP>' using `<SAMP>A</SAMP>'.
+</P><P>
+
+A frame `<SAMP>[A; <small>...</small> C]</SAMP>' itself stands for the hypothetical
+judgment 
+"<EM>A true |- C true</EM>". 
+Frames can be used in
+proofs which discharge a hypothesis, like the ImpI-rule. In our example
+the frame is used to prove the final line `<SAMP>A &#38; (A=&#62;B) =&#62; B</SAMP>'.
+</P><P>
+
+<EM>Scoping:</EM> Entries within a frame can only be used within that frame. Once
+a frame is closed, it can be used as a whole as a hypothetical
+judgment, but its entries are no longer "visible".
+</P><P>
+
+To check this small proof, run <KBD>tutch prop0</KBD>. The extension
+`<SAMP>.tut</SAMP>' is added automatically. The output should look like this:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ tutch prop0
+TUTCH Version ...
+[Opening file prop0.tut]
+Proving mp: A &#38; (A =&#62; B) =&#62; B ...
+QED
+[Closing file prop0.tut]
+$
+</pre></td></tr></table></P><P>
+
+As in most programming languages, we can supply <EM>comments</EM> for
+better understandability or informal explanations. There are two kinds
+of comments:
+</P><P>
+
+<OL>
+<LI>
+        Multi-line comments are enclosed between `<SAMP>%{</SAMP>' and `<SAMP>}%</SAMP>'.
+<LI>
+        Everything after `<SAMP>%</SAMP>' until the end of the line forms a single line comment. 
+</OL>
+<P>
+
+The following file `<SAMP>prop1.tut</SAMP>' contains the above proof decorated
+with justifications and a file header, giving name and informal content.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>%{ prop1.tut
+
+   Modus ponens.
+}%
+
+proof mp: A &#38; (A=&#62;B) =&#62; B = 
+begin
+[ A &#38; (A=&#62;B);         % 1 Assumption
+  A;                  % 2 by AndE1 1
+  A=&#62;B;               % 3 by AndE2 1  
+  B ];                % 4 by ImpE 3 2
+A &#38; (A=&#62;B) =&#62; B       % 5 by ImpI 4
+end;
+</pre></td></tr></table></P><P>
+
+<A NAME="Propositional Logic II"></A>
+<HR SIZE="6">
+<A NAME="SEC9"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC8"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC10"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.2 Propositional Logic II </H2>
+<!--docid::SEC9::-->
+<P>
+
+Logical equivalence <EM>A &#60;=&#62; B</EM> is just defined as implication in
+both directions, made into a conjunction: <EM>A =&#62; B &#38; B =&#62; A</EM>. Thus,
+to prove an assertion `<SAMP>A &#60;=&#62; B</SAMP>' we have to prove `<SAMP>A =&#62; B</SAMP>' and
+`<SAMP>B =&#62; A</SAMP>' in any order. The goal `<SAMP>A &#60;=&#62; B</SAMP>' then follows by
+AndI. Example: Idempotency of the conjunction. 
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>% prop2.tut
+% Idempotency of conjunction
+
+proof idemAnd : A &#38; A &#60;=&#62; A =
+begin
+[ A &#38; A;
+  A ];
+A &#38; A =&#62; A;
+A =&#62; A &#38; A;
+A &#38; A &#60;=&#62; A
+end;
+</pre></td></tr></table></P><P>
+
+The file `<SAMP>prop2.tut</SAMP>' contains our incomplete proof. Before
+we finish it, we want to check correctness of this fragment. We run
+<KBD>tutch -v prop2</KBD>:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ tutch -v prop2
+TUTCH Version ...
+[Opening file prop2.tut]
+Proving idemAnd: A &#38; A &#60;=&#62; A ...
+  1  [ A &#38; A;
+  2    A ];                                            by AndE1 1
+  3  A &#38; A =&#62; A;                                       by ImpI 2
+prop2.tut:9.1-9.11 Error:
+Unjustified line (A &#38; A |- A); (A &#38; A) =&#62; A  |-  A =&#62; (A &#38; A)
+Assuming this line, checking remainder...
+  4  A =&#62; A &#38; A;                                       UNJUSTIFIED
+  5  A &#38; A &#60;=&#62; A                                       by AndI 3 4
+Proof incomplete
+[Closing file prop2.tut]             
+</pre></td></tr></table></P><P>
+
+Tutch verifies the first three lines and finds line 4 to be
+unjustified. It prints out all visible judgments, then a turnstile
+`<SAMP>|-</SAMP>' and then the unproven assertion `<SAMP>A =&#62; (A &#38; A)</SAMP>'. In our
+case the available judgments are
+</P><P>
+
+<DL COMPACT>
+<DT><EM>A &#38; A |- A</EM>
+<DD>      This hypothetical judgment is the result of  the frame 
+      `<SAMP>[A &#38; A; A]</SAMP>' (lines 1-2). 
+<DT><EM>|- (A &#38; A) =&#62; A</EM>
+<DD>      This non-hypothetical judgment, result of line 3, is printed with
+      out the turnstile. 
+      All parenthesis are made explicit.
+</DL>
+<P>
+
+Now we can continue and add the missing proof of `<SAMP>A =&#62; A &#38; A</SAMP>'. We
+leave this as a simple exercise to the reader.
+</P><P>
+
+<A NAME="Propositional Logic III"></A>
+<HR SIZE="6">
+<A NAME="SEC10"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC9"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC11"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.3 Propositional Logic III </H2>
+<!--docid::SEC10::-->
+<P>
+
+The remaining constructs of intuitionistic propositional logic are
+disjunction <EM>|</EM>, truth <EM>T</EM> and falsehood <EM>F</EM>.
+These are their proof rules:
+</P><P>
+
+<DL COMPACT>
+<DT>OrI1
+<DD>      If <EM>A true</EM> then <EM>A | B true</EM>
+<DT>OrI2
+<DD>      If <EM>B true</EM> then <EM>A | B true</EM>
+<DT>OrE
+<DD>      If <EM>A | B true</EM>, 
+      <EM>A true |- C true</EM> and
+      <EM>B true |- C true</EM> then
+      <EM>C true</EM>
+<DT>TrueI
+<DD>      <EM>T true</EM>
+<DT>FalseE
+<DD>      If <EM>F true</EM> then <EM>C true</EM> for any proposition <EM>C</EM>
+</DL>
+<P>
+
+We treat negation as an abbreviation: `<SAMP>~A</SAMP>' stands for 
+`<SAMP>A =&#62; F</SAMP>'.
+</P><P>
+
+In the following we present an example making use of
+`<SAMP>|</SAMP>'-elimination. We prove `<SAMP>~A|B =&#62; A=&#62;B</SAMP>'.
+</P><P>
+
+(<EM>An aside on the meaning of this proposition:</EM> In
+classical logic the implication `<SAMP>A =&#62; B</SAMP>' can be defined as `<SAMP>~A
+| B</SAMP>'. In intuitionistic logic the disjunction `<SAMP>~A | B</SAMP>' is stronger
+than the implication `<SAMP>A =&#62; B</SAMP>'. This means `<SAMP>(A=&#62;B) =&#62; ~A|B</SAMP>' is 
+<EM>not</EM> provable, only the direction given here:)
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>% prop3.tut
+% Classical implication definition  ~A|B =&#62; A=&#62;B
+
+proof impDef : ~A|B =&#62; A=&#62;B =
+begin
+[ ~A|B;
+  [ A;
+    [ ~A;
+      F;        
+      B ];
+    [ B;
+      B ];
+    B ];
+  A=&#62;B ];       
+~A|B =&#62; A=&#62;B    
+end;
+</pre></td></tr></table></P><P>
+
+We assume `<SAMP>~A|B</SAMP>' and `<SAMP>A</SAMP>' and have to show `<SAMP>B</SAMP>'. Using OrE
+on the first hypothesis leaves us to show the validity of the
+hypothetical judgements `<SAMP>~A |- B</SAMP>' and `<SAMP>B |- B</SAMP>' in our
+context. While the second is trivial, we proof the first by
+contradiction after assuming `<SAMP>~A</SAMP>' (recall that `<SAMP>~A</SAMP>' stands for
+`<SAMP>A=&#62;F</SAMP>'). 
+</P><P>
+
+We obtain the justifications for each proof entry by running 
+<KBD>tutch -v prop3</KBD> (<STRONG>v</STRONG>erbose output):
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ tutch -v prop3
+TUTCH Version ...
+[Opening file prop3.tut]
+Proving impDef: ~A | B =&#62; A =&#62; B ...
+  1  [ ~A | B;
+  2    [ A;
+  3      [ ~A;
+  4        F;                   by ImpE 3 2
+  5        B ];                 by FalseE 4
+  6      [ B;
+  7        B ];                 by Hyp 6
+  8      B ];                   by OrE 1 5 7
+  9    A =&#62; B ];                by ImpI 8
+ 10  ~A | B =&#62; A =&#62; B           by ImpI 9
+QED
+[Closing file prop3.tut]
+$
+</pre></td></tr></table></P><P>
+
+Precedence and associativity of the connectives: `<SAMP>~</SAMP>' binds
+strongest, then come `<SAMP>&#38;</SAMP>', `<SAMP>|</SAMP>' and `<SAMP>=&#62;</SAMP>' (weakest). All of
+these three infix operators are right-associative. Thus 
+`<SAMP>A =&#62; (B =&#62; C)</SAMP>' and `<SAMP>A =&#62; B =&#62; C</SAMP>' denote the same proposition,
+but `<SAMP>(A =&#62; B) =&#62; C</SAMP>' a different. In the same way from `<SAMP>A &#38; B &#38;
+C</SAMP>' we can infer `<SAMP>A</SAMP>' in one step, but neither `<SAMP>B</SAMP>' nor `<SAMP>C</SAMP>',
+since we have to prove `<SAMP>B &#38; C</SAMP>' first.
+</P><P>
+
+<A NAME="Propositional Logic IV"></A>
+<HR SIZE="6">
+<A NAME="SEC11"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC10"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC12"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.4 Propositional Logic IV </H2>
+<!--docid::SEC11::-->
+<P>
+
+In the last sections, we have presented every possibility of proving a
+proposition, have we?  Then what about <EM>proof by contradiction</EM>,
+i.e., to prove a proposition `<SAMP>A</SAMP>' we may assume the opposite
+`<SAMP>~A</SAMP>' and show that there is a contradiction `<SAMP>F</SAMP>'?  This
+principle is intuitionistically not valid, but part of <EM>classical
+logic</EM>.  Classical reasoning available via the rule `<SAMP>Class</SAMP>'
+</P><P>
+
+<DL COMPACT>
+<DT>Class
+<DD>      If <EM>~A true |- F true</EM> then <EM>A true</EM>
+</DL>
+<P>
+
+To make use of proof by contradiction, we have to declare our proof as
+`<SAMP>classical</SAMP>'.  Now we are able to define the other direction of the
+classical definition of implication from the last section.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>% prop4.tut
+% Classical implication definition II (A=&#62;B) =&#62; ~A|B
+
+classical proof classImpDef : (A=&#62;B) =&#62; ~A|B =
+begin
+  [ A =&#62; B;
+    [ ~(~A | B);
+      [ ~A;
+        ~A | B;
+        F ];
+      A;
+      B;
+      ~A | B;
+      F ];
+    ~A|B ];
+  (A=&#62;B) =&#62; ~A|B
+end; 
+</pre></td></tr></table></P><P>
+
+To show `<SAMP>~A | B</SAMP>', we assume the opposite and derive a contradiction
+`<SAMP>F</SAMP>'.  To this end, we first derive `<SAMP>A</SAMP>' (again classically),
+then `<SAMP>B</SAMP>' which lets us infer the contraction.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ tutch -v prop4.tut
+TUTCH Version ...
+[Opening file prop4.tut]
+
+Proving classImpDef: (A =&#62; B) =&#62; ~A | B ... (classically)
+  1  [ A =&#62; B;
+  2    [ ~(~A | B);
+  3      [ ~A;
+  4        ~A | B;             by OrIL 3
+  5        F ];                by ImpE 2 4
+  6      A;                    by Class 5
+  7      B;                    by ImpE 1 6
+  8      ~A | B;               by OrIR 7
+  9      F ];                  by ImpE 2 8
+ 10    ~A | B ];               by Class 9
+ 11  (A =&#62; B) =&#62; ~A | B        by ImpI 10
+QED
+[Closing file prop4.tut]
+</pre></td></tr></table></P><P>
+
+Using rule `<SAMP>Class</SAMP>' we can derive the law of excluded middle, which
+states that `<SAMP>A | ~A</SAMP>' hold for every `<SAMP>A</SAMP>'.  The Tutch proof is
+left to the reader as an exercise.  The law of the excluded middle does
+not hold intutionistically because it violates the <EM>disjunction
+property</EM>: Whenever we have a proof of `<SAMP>A | B</SAMP>', we either have a
+proof of `<SAMP>A</SAMP>' or a proof of `<SAMP>B</SAMP>'. Since, in classical logic,
+`<SAMP>A | ~A</SAMP>' holds for every formula `<SAMP>A</SAMP>', regardless its meaning,
+the disjunction property would imply that we either have a proof of
+`<SAMP>A</SAMP>' or a proof of `<SAMP>~A</SAMP>', without looking at `<SAMP>A</SAMP>'! Again,
+this would imply that either <EM>every</EM> formula is true or
+<EM>every</EM> formulat is false which is clearly not valid.
+</P><P>
+
+<A NAME="Requirements and Submission"></A>
+<HR SIZE="6">
+<A NAME="SEC12"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC11"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC13"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.5 Requirements and Submission </H2>
+<!--docid::SEC12::-->
+<P>
+
+How to complete your homework in five steps:
+<OL>
+<LI>
+Getting the requirements
+<LI>
+ Completing the proofs
+<LI>
+ Checking against the requirements
+<LI>
+ Submitting
+<LI>
+ Checking status of submission
+</OL>
+<P>
+
+Let us assume you have to complete assignment `<SAMP>prop</SAMP>'.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC13"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC12"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC14"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.5.1 Getting the requirements </H3>
+<!--docid::SEC13::-->
+<P>
+
+The requirement files for the homework assignments are stored under 
+<TT>/afs/andrew/scs/cs/15-399/req</TT>.
+First copy the requirements file to obtain a template proof file:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ cp /afs/andrew/scs/cs/15-399/req/prop.req prop.tut
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC14"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC13"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC15"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.5.2 Completing the proofs </H3>
+<!--docid::SEC14::-->
+<P>
+
+Edit file `<SAMP>prop.tut</SAMP>' in your favored editor (we recommend
+<TT>xemacs</TT>), fill in the proofs and run Tutch whenever you want to check
+your accomplishments. You can even check incomplete proofs, as long as
+the syntax is correct and there are no open frames.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC15"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC14"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC16"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.5.3 Checking against the requirements </H3>
+<!--docid::SEC15::-->
+<P>
+
+To check whether you fulfilled the requirements run Tutch with option
+`<SAMP>-r</SAMP>'. After this option you specify the requirements file. If your
+proof file has the same name as the requirements file (except
+extension), you can save some keystrokes. You will see an output like this:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ tutch -r prop.req prop.tut
+TUTCH Version ...
+[Opening requirements file /afs/andrew/scs/cs/15-399/req/prop.req]
+[Closing requirements file /afs/andrew/scs/cs/15-399/req/prop.req]
+[Opening file prop.tut]
+Proving mp: A &#38; (A =&#62; B) =&#62; B ...
+QED
+Proving impDef: ~A | B =&#62; A =&#62; B ...
+QED
+[Closing file prop.tut]
+
+Checking requirements...
+[X] proof mp: A &#38; (A =&#62; B) =&#62; B
+[X] proof impDef: ~A | B =&#62; A =&#62; B
+Congratulations! All problems solved!
+$
+</pre></td></tr></table></P><P>
+
+A short version of that command is `<SAMP>tutch -r prop</SAMP>'. You can also
+distribute your proofs over several files. To check
+the two files `<SAMP>prop1.tut</SAMP>' and `<SAMP>prop2.tut</SAMP>' against
+`<SAMP>prop.req</SAMP>', type
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ tutch -r prop prop1 prop2
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC16"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC15"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC17"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.5.4 Submitting </H3>
+<!--docid::SEC16::-->
+<P>
+
+You do not get credits for your homework unless you <EM>submit</EM>. You
+must be registered student of course  and have access to
+the Andrew File System (afs). To submit you type:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ submit -r prop
+SUBMIT Version ...
+...
+[Submitting files: prop.tut ]
+[Submission OK]
+$
+</pre></td></tr></table></P><P>
+
+This submits file `<SAMP>prop.tut</SAMP>' for homework `<SAMP>prop.req</SAMP>'. To
+submit several files, e.g., type 
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ submit -r prop prop1 prop2
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC17"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC16"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.5.5 Checking status of submission </H3>
+<!--docid::SEC17::-->
+<P>
+
+With the `<SAMP>status</SAMP>' command you can check the status of your
+submission, e.g.,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>$ status prop
+STATUS Version ...
+Getting status of submission prop...
+Submitted files: prop.tut
+Assignment: prop
+Student ID: foo
+Date:       today
+
+[X] proof mp: A &#38; (A =&#62; B) =&#62; B
+[X] proof impDef: ~A | B =&#62; A =&#62; B
+$
+</pre></td></tr></table></P><P>
+
+<A NAME="Proof Terms"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_3.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Andreas Abel</I> on <I>October, 24  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

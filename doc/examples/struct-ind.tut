@@ -1,0 +1,40 @@
+%% Examples for structural induction
+
+val app : t list -> t list -> t list =
+  fn l => rec l of
+      f nil => fn l' => l'
+    | f (x :: xs) => fn l' => x :: f xs l'
+  end;
+
+val rev : t list -> t list -> t list =
+  fn l => rec l of
+      f nil => fn k => k
+    | f (x::xs) => fn k => f xs (x :: k)
+  end;
+
+val reverse : t list -> t list =
+  fn l => rev l nil;
+
+term appnil : !l:t list. app l nil = l =
+  fn l => rec l of
+      f nil => eqN
+    | f (x :: xs) => eqC (f xs)
+  end;
+
+%% Homework:
+%% term refll : !l:t list. (l = l);
+
+
+term apprev : !l:t list. !k:t list. !m:t list. 
+    app (rev l k) m = rev l (app k m) =
+  fn l => rec l of
+      f nil => fn k => fn m => refll (app k m)
+    | f (x::xs) => fn k => fn m => f xs (x :: k) m
+  end; 
+
+term revapp : !l:t list. !k:t list. !m:t list. 
+    rev (app l k) m = rev k (rev l m) =
+  fn l => rec l of
+      f nil => fn k => fn m => refll (rev k m)
+    | f (x :: xs) => fn k => fn m => f xs k (x :: m)
+  end;

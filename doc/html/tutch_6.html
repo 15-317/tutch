@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on October, 24  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Tutch User's Guide: First-Order Logic</TITLE>
+
+<META NAME="description" CONTENT="Tutch User's Guide: First-Order Logic">
+<META NAME="keywords" CONTENT="Tutch User's Guide: First-Order Logic">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC20"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_5.html#SEC19"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_7.html#SEC21"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_7.html#SEC21"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 6. First-Order Logic </H1>
+<!--docid::SEC20::-->
+<P>
+
+We extend our propositions and our linear proof
+format to include universal and existential quantification.
+Here is an example demonstrating All-introduction and -elimination and
+Exists-introduction: 
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>proof AllEx : !y:t. (!x:t. A(x)) =&#62; ?x:t. A(x) =
+begin
+    [ c : t;
+      [ !x:t. A(x);
+        A(c);
+        ?x:t. A(x) ];
+      (!x:t. A(x)) =&#62; ?x:t. A(x)];
+    !y:t. (!x:t. A(x)) =&#62; ?x:t. A(x)
+end;
+</pre></td></tr></table>The scope of a quantification starts at the `<SAMP>.</SAMP>' and extends as far
+to the right as syntactically possible. Thus the All-quantified variable
+`<SAMP>y</SAMP>' is bound in the whole proposition, whereas the scope of
+`<SAMP>!x:t.</SAMP>' is limited by parentheses to preserve the intended
+meaning of the proposition.
+Invoking the proof checker Tutch, it gives the following justifications
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>Proving AllEx: !y:t. (!x:t. A x) =&#62; ?x:t. A x ...
+  1  [ c: t;
+  2    [ !x:t. A x;
+  3      A c;                                          by ForallE 2 1
+  4      ?x:t. A x ];                                  by ExistsI 1 3
+  5    (!x:t. A x) =&#62; ?x:t. A x ];                     by ImpI 4
+  6  !y:t. (!x:t. A x) =&#62; ?x:t. A x                    by ForallI 5
+QED   
+</pre></td></tr></table>Universal quantification <KBD>!y:t. B(y)</KBD> can be introduced by a frame
+<KBD>[c:t; ... B(c)]</KBD> as we see in the last line: Here <KBD>B(y)</KBD> is
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>(!x:t. A x) =&#62; ?x:t. A x
+</pre></td></tr></table>which does not contain any occurrence of <KBD>y</KBD>. Universal
+quantification can be eliminated if we have a term of the type over
+which the
+quantification is ranging. An example can be seen in line 3: We have an
+All-quantified assertion <KBD>!x:t. A x</KBD> in line 2 and a term <KBD>c :
+t</KBD>, the parameter introduced in line 1. Thus we can deduce <KBD>A x</KBD>
+where all occurrences of <KBD>x</KBD> are replaced by <KBD>c</KBD>, which is
+<KBD>A c</KBD>.
+</P><P>
+
+To introduce an existential quantification <KBD>?x:t. A x</KBD> (line 4)
+we need a witness <KBD>c : t</KBD> (line 1) and a proof for the special
+instance of the proposition <KBD>A c</KBD> (line 3). For existential
+elimination we consider the following example:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>proof ExNotImpNotAll : (?x:t. ~A(x)) =&#62; ~!x:t. A(x) =
+begin
+[ ?x:t. ~A(x);
+  [ !x:t. A(x);
+    [ c: t, ~A(c);
+      A(c);
+      F ];
+    F ];
+  ~!x:t. A(x) ];
+(?x:t. ~A(x)) =&#62; ~!x:t. A(x); 
+end;
+</pre></td></tr></table>To prove falsehood <EM>F</EM> in proof line 6, we eliminate the
+existential quantification in the first line. This gives us two new
+hypotheses to show our goal: A witness <KBD>c : t</KBD> and a proof of
+<KBD>~A(c)</KBD>. In principle Exists-elimination is used in the same way as disjunction
+elimination. Note that we extended our frame syntax to include the
+introduction of several hypotheses, separated by commas.
+</P><P>
+
+For further information consult the reference.
+</P><P>
+
+<A NAME="Arithmetic"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_5.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_7.html#SEC21"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Andreas Abel</I> on <I>October, 24  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

@@ -1,0 +1,117 @@
+proof reflEq : !x:nat. (x = x) = 
+begin
+[ x: nat;
+  0 = 0;
+  [ x': nat, x' = x';
+    s x' = s x' ];
+  x = x ];
+!x:nat. x = x;
+end;
+
+proof transEq : (!x:nat. !y:nat. !z:nat. x = y => y = z => x = z) =
+begin
+[ x : nat;
+  [ y : nat;
+    [ z : nat;
+      [ 0 = 0;
+        [ 0 = 0;
+          0 = 0 ];                            % eqI0
+        0 = 0 => 0 = 0 ];
+      0 = 0 => 0 = 0 => 0 = 0;                % case (z = 0)
+      [ z' : nat, 0 = 0 => 0 = z' => 0 = z';
+        [ 0 = 0;
+          [ 0 = s(z');
+            0 = s(z') ];                      % eqE0s
+          0 = s(z') => 0 = s(z') ];
+        0 = 0 => 0 = s(z') => 0 = s(z') ];    % case (z = s(z'))
+      0 = 0 => 0 = z => 0 = z ];
+    !z:nat. 0 = 0 => 0 = z => 0 = z;          % case (y = 0)
+
+    [ y' : nat, !z:nat. 0 = y' => y' = z => 0 = z;
+      [ z : nat;
+        [ 0 = s(y');
+	  [ s(y') = z;
+            0 = z ];                          % eqE0s
+	  s(y') = z => 0 = z ];
+        0 = s(y') => s(y') = z => 0 = z ];
+      !z:nat. 0 = s(y') => s(y') = z => 0 = z ]; % case (y = s(y'))
+
+    !z:nat. 0 = y => y = z => 0 = z ];
+  !y:nat. !z:nat. 0 = y => y = z => 0 = z;    % base case (x = 0)
+
+  [ x' : nat, !y:nat. !z:nat. x' = y => y = z => x' = z;  % ind hyp (x)
+    [ y : nat;
+      [ z : nat;
+        [ s(x') = 0;
+          [ 0 = z;
+	    s(x') = z ];                      % eqEs0
+          0 = z => s(x') = z ];
+        s(x') = 0 => 0 = z => s(x') = z ];
+      !z:nat. s(x') = 0 => 0 = z => s(x') = z;   % case (y = 0)
+      [ y' : nat, !z:nat. s(x') = y' => y' = z => s(x') = z;
+        [ z : nat;
+          [ s(x') = s(y');
+	    [ s(y') = 0;
+	      s(x') = 0 ];                    % eqEs0
+            s(y') = 0 => s(x') = 0 ];
+          s(x') = s(y') => s(y') = 0 => s(x') = 0;     % case (z = 0)         
+
+          [ z' : nat, s(x') = s(y') => s(y') = z' => s(x') = z';
+            [ s(x') = s(y');
+              [ s(y') = s(z');
+                x' = y';                      % eqEss
+                y' = z';                      % eqEss
+                !z:nat. x' = y' => y' = z => x' = z;
+                x' = y' => y' = z' => x' = z';
+                y' = z' => x' = z';
+		x' = z';
+                s(x') = s(z') ];              % eqIs
+              s(y') = s(z') => s(x') = s(z') ];
+            s(x') = s(y') => s(y') = s(z') => s(x') = s(z') ];
+          s(x') = s(y') => s(y') = z => s(x') = z ];
+        !z:nat. s(x') = s(y') => s(y') = z => s(x') = z ];  % case (y = s(y'))
+      !z:nat. s(x') = y => y = z => s(x') = z ];
+    !y:nat. !z:nat. s(x') = y => y = z => s(x') = z ];  % ind step (x = s(x'))
+  !y:nat. !z:nat. x = y => y = z => x = z ];
+!x:nat. !y:nat. !z:nat. x = y => y = z => x = z;
+end;
+
+proof predSpec : (!x:nat. ~ x = 0 => ?y:nat. s(y) = x) =
+begin
+[ x : nat;
+  [ ~ 0 = 0;
+    0 = 0;
+    F;
+    ?y:nat. s(y) = 0 ];
+  ~ 0 = 0 => ?y:nat. s(y) = 0;    % case (x = 0)
+  [ x' : nat, ~ x' = 0 => ?y:nat. s(y) = x';
+    [ ~ s(x') = 0;
+      !z:nat. z = z;              % reflexivity lemma
+      s(x') : nat;
+      s(x') = s(x');
+      ?y:nat. s(y) = s(x') ];
+    ~ s(x') = 0 => ?y:nat. s(y) = s(x') ];  % case (x = s(x'))
+  ~ x = 0 => ?y:nat. s(y) = x ];
+!x:nat. ~ x = 0 => ?y:nat. s(y) = x;
+end;
+
+val pred : nat -> nat = fn x  => rec x
+      of f(0) => 0
+       | f(s(x')) => x'
+    end;
+
+proof verifyPred : !x:nat. ~(x = 0) => s(pred(x)) = x =
+begin
+[ x : nat;
+  [ ~ 0 = 0; 0 = 0; F;
+    s(pred(0)) = 0 ];
+  ~ 0 = 0 => s(pred(0)) = 0;    % case (x = 0)
+  [ x' : nat, ~ x' = 0 => s(pred(x')) = x';
+    [ ~ s(x') = 0;
+      !z:nat. z = z;            % reflexivity lemma
+      s x' : nat;
+      s(pred(s(x'))) = s(x') ]; % since pred(s(x')) ==> x'
+    ~ s(x') = 0 => s(pred(s(x'))) = s(x') ];  % case (x = s(x'))
+  ~ x = 0 => s(pred(x)) = x ];
+!x:nat. ~ x = 0 => s(pred(x)) = x;
+end;

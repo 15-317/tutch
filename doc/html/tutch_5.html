@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on October, 24  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Tutch User's Guide: Types and Programs</TITLE>
+
+<META NAME="description" CONTENT="Tutch User's Guide: Types and Programs">
+<META NAME="keywords" CONTENT="Tutch User's Guide: Types and Programs">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC19"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_6.html#SEC20"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_6.html#SEC20"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 5. Types and Programs </H1>
+<!--docid::SEC19::-->
+<P>
+
+Using the Curry-Howard-Isomorphism, we reuse proof terms to write
+<EM>programs</EM> and we introduce isomorphic constructs to
+propositions as the <EM>types</EM> of our programs: product `<SAMP>*</SAMP>',
+disjoint sum `<SAMP>+</SAMP>', function space `<SAMP>-&#62;</SAMP>', unit type `<SAMP>1</SAMP>' and
+empty type `<SAMP>0</SAMP>'. Note that there are no isomorphic constructs to
+negation and equivalence.
+</P><P>
+
+Furthermore we introduce the three inductive types `<SAMP>nat</SAMP>' (Natural
+numbers), `<SAMP>bool</SAMP>' (Booleans) and `<SAMP>list</SAMP>' (Polymorphic
+lists). The constructors and destructors are
+</P><P>
+
+<DL COMPACT>
+<DT><KBD>0, s <I>t</I></KBD>
+<DD>      <TT>nat</TT>: Zero and successor
+<DT><KBD>rec <I>r</I> of <I>f</I> 0 =&#62; <I>s</I> | <I>f</I> (s <I>x</I>) =&#62; <I>t</I> end</KBD>
+<DD>      <TT>nat</TT>: Primitive recursion
+<DT><KBD>true, false</KBD>
+<DD>      <TT>bool</TT>: The two truth values
+<DT><KBD>if <I>r</I> then <I>s</I> else <I>t</I></KBD>
+<DD>      <TT>bool</TT>: Case distinction
+<DT><KBD>nil, <I>s</I> :: <I>t</I></KBD>
+<DD>      <TT><I>tau</I> list</TT>: Empty list and cons.
+<DT><KBD>rec <I>r</I> of <I>f</I> nil =&#62; <I>s</I> | <I>f</I> (<I>x</I>::<I>xs</I>) =&#62; <I>t</I> end</KBD>
+<DD>      <TT><I>tau</I> list</TT>: Primitive recursion
+</DL>
+<P>
+
+Note that `<SAMP>0</SAMP>' can both mean the number zero and the empty type.
+`<SAMP>1 + 1</SAMP>' may look like an arithmetical expression, but denotes
+a sum type here. Be careful not to mistake `<SAMP>1</SAMP>' for a number and to use
+it in your programs. Tutch will parse it as a type and give you a
+strange error message.
+</P><P>
+
+The two terms for primitive recursion define locally a function
+<TT><I>f</I></TT> and describe its behaviour for all possible cases of input by
+the step terms <TT><I>s</I></TT> and <TT><I>t</I></TT>. The use of <TT><I>f</I></TT> within the
+step terms <TT><I>s</I></TT> and <TT><I>t</I></TT> underlies strong syntactic
+restrictions that guarantee termination of the function on all inputs:
+In <TT><I>s</I></TT> no recursive calls are allowed at all. In <TT><I>t</I></TT>, for
+<TT>nat</TT> a recursive call can <EM>only</EM> look like <TT><I>f x</I></TT> (or
+<TT><I>f(x)</I></TT>), where <TT><I>x</I></TT> is the variable defined in the pattern
+matching <TT><I>f</I> (s <I>x</I>) =&#62; ...</TT>. For <TT>list</TT>, the recursive call
+must be <TT><I>f xs</I></TT> (or with parentheses as above).
+</P><P>
+
+Here is one example for primitive recursion over <TT>nat</TT>:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>val double : nat -&#62; nat
+  = fn x =&#62; rec x of
+        d 0 =&#62; 0
+      | d (s x') =&#62; s (s (d x'))
+    end;
+</pre></td></tr></table></P><P>
+
+The keyword `<SAMP>val</SAMP>' indicates the definition of a program of a given
+type. Another example is subtraction on <TT>nat</TT>:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>val minus : nat -&#62; nat -&#62; nat 
+  = fn x =&#62; rec x of
+        m 0 =&#62; fn y =&#62; 0
+      | m (s x') =&#62; fn y =&#62; rec y of
+            p 0 =&#62; s x'
+          | p (s y') =&#62; m x' y'
+        end
+    end;    
+</pre></td></tr></table></P><P>
+
+The types of the locally defined functions are <TT>m : nat -&#62; (nat -&#62; nat)</TT>
+and <TT>p : nat -&#62; nat</TT>. To be able to apply two arguments to <TT>m</TT> we
+have used the trick to move the second lambda abstraction <TT>fn y =&#62;</TT>
+into the outer recursion. Thus <TT>m</TT>, applied to <TT>0</TT> or <TT>s x'</TT>,
+returns a function from <TT>nat</TT> to <TT>nat</TT>, to which we can apply the
+second argument.
+</P><P>
+
+The inner recursion is just a case distinction, since <TT>p</TT> does not
+occur on a right hand side.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>val rev : tau list -&#62; tau list -&#62; tau list
+  = fn l =&#62; rec l of 
+        r nil =&#62; fn a =&#62; a
+      | r (x::l') =&#62; fn a =&#62; r l' (x :: a)
+    end;
+
+val reverse : tau list -&#62; tau list
+  = fn l =&#62; rev l nil;
+</pre></td></tr></table></P><P>
+
+This is an implementation of the reverse function by an auxiliary
+function with an accumulator argument. We use the same trick as for
+<TT>minus</TT>. 
+</P><P>
+
+For more documentation look up the reference.
+</P><P>
+
+<A NAME="First-Order Logic"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_4.html#SEC18"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_6.html#SEC20"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Andreas Abel</I> on <I>October, 24  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

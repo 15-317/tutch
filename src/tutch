@@ -1,0 +1,4 @@
+#!/bin/csh
+sml @SMLload=.heap/tutch \
+    @SMLdebug=/dev/null \
+    $*

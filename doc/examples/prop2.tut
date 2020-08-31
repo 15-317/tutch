@@ -1,0 +1,11 @@
+% prop2.tut
+% Idempotency of conjunction
+
+proof idemAnd : A & A <=> A =
+begin
+[ A & A;
+  A ];
+A & A => A;
+A => A & A;
+A & A <=> A
+end;

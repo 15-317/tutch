@@ -1,0 +1,57 @@
+Group is
+  $/basis.cm
+  stream.sml
+  istream.sml
+  cxt.sml
+  names.sml
+  exp.sml
+  uexp.sml
+  val.sml
+  uval.sml
+  proof.sml
+  prop.sml
+  term.sml
+  ann-proof.sml
+  region.sml
+  regtree.sml
+  path.sml
+  syntax.sml
+  paths.sml
+  proofs.sml
+  extsyn.sml
+  chatter.sml
+#if defined(OPSYS_UNIX)
+#if (SMLNJ_VERSION >= 110) andalso (SMLNJ_MINOR_VERSION > 6)
+  ux-globalw.sml
+#else
+  ux-global.sml
+#endif
+#else
+#if (SMLNJ_VERSION >= 110) andalso (SMLNJ_MINOR_VERSION > 6)
+  win-globalw.sml
+#else
+  win-global.sml
+#endif
+#endif
+  check-proof.sml
+  check-ann-proof.sml
+  check-term.sml
+  check-exp.sml
+  check-dep.sml
+  spec.sml
+  spec-check.sml
+  decl.sml
+  token.sml
+  parsing.sml
+  lexer.sml
+  fixity.sml
+  parse-prop.sml
+  parse-term.sml
+  parse-exp.sml
+  parse-proof.sml
+  parser.sml
+  parse-spec.sml
+  oslib.sml
+  submit.sml
+  reqfile.sml
+  top.sml

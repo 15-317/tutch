@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on October, 24  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Tutch User's Guide: Structural Induction</TITLE>
+
+<META NAME="description" CONTENT="Tutch User's Guide: Structural Induction">
+<META NAME="keywords" CONTENT="Tutch User's Guide: Structural Induction">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC23"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_7.html#SEC22"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_8.html#SEC24"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_7.html#SEC21"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC25"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 8. Structural Induction </H1>
+<!--docid::SEC23::-->
+<P>
+
+Similar to reasoning about natural numbers is reasoning about lists. We
+introduce structural induction and an equality over lists. This equality
+is denoted by the same symbol `<SAMP>=</SAMP>' as the one for natural
+numbers. The context makes it clear which of the two relations is meant.
+</P><P>
+
+The use of list-induction is analogous to nat-induction. This example
+should make it clear:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>proof symList : !l:t list. !k:t list. (l = k) =&#62; (k = l) =
+begin
+[ l:t list; 
+  [ k: t list;
+    [ nil = nil;
+      nil = nil ];
+    (nil = nil) =&#62; (nil = nil);
+    [ y: t, ys: t list, nil = ys =&#62; ys = nil;
+      [ nil = y :: ys; 
+        y :: ys = nil ];
+      nil = y :: ys =&#62; y :: ys = nil;
+    nil = k =&#62; k = nil ];
+  !k:t list. nil = k =&#62; k = nil; 
+  [ x: t, xs: t list, !k:t list. xs = k =&#62; k = xs;
+    [ k: t list.
+      [ nil = x::xs;
+        x::xs = nil ];
+      nil = x::xs =&#62; x::xs = nil;
+
+      l = x::xs =&#62; x::xs = l ];
+    !k:t list. l = x::xs =&#62; x::xs = l ];
+  !k:t list. l = k =&#62; k = l ];
+!l:t list. !k:t list. l = k =&#62; k = l
+end;
+</pre></td></tr></table></P><P>
+
+<HR SIZE="6">
+<A NAME="SEC24"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_8.html#SEC23"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_9.html#SEC25"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 8.1 Proof terms </H2>
+<!--docid::SEC24::-->
+<P>
+
+UNDER CONSTRUCTION!
+</P><P>
+
+We prove properties of these three functions:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>val app : t list -&#62; t list -&#62; t list =
+  fn l =&#62; rec l of
+      f nil =&#62; fn l' =&#62; l'
+    | f (x :: xs) =&#62; fn l' =&#62; x :: f xs l'
+  end;
+
+val rev : t list -&#62; t list -&#62; t list =
+  fn l =&#62; rec l of
+      f nil =&#62; fn k =&#62; k
+    | f (x::xs) =&#62; fn k =&#62; f xs (x :: k)
+  end;
+
+val reverse : t list -&#62; t list =
+  fn l =&#62; rev l nil;
+</pre></td></tr></table>Here are the proofs:
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>term appnil : !l:t list. app l nil = l =
+  fn l =&#62; rec l of
+      f nil =&#62; eqN
+    | f (x :: xs) =&#62; eqC (f xs)
+  end;
+
+term refll : !l:t list. (l = l); % Homework !
+
+term apprev : !l:t list. !k:t list. !m:t list. 
+    app (rev l k) m = rev l (app k m) =
+  fn l =&#62; rec l of
+      f nil =&#62; fn k =&#62; fn m =&#62; refll (app k m)
+    | f (x::xs) =&#62; fn k =&#62; fn m =&#62; f xs (x :: k) m
+  end; 
+
+term revapp : !l:t list. !k:t list. !m:t list. 
+    rev (app l k) m = rev k (rev l m) =
+  fn l =&#62; rec l of
+      f nil =&#62; fn k =&#62; fn m =&#62; refll (rev k m)
+    | f (x :: xs) =&#62; fn k =&#62; fn m =&#62; f xs k (x :: m)
+  end;
+</pre></td></tr></table></P><P>
+
+<A NAME="Reference"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[Index]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="tutch_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Andreas Abel</I> on <I>October, 24  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

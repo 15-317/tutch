@@ -1,0 +1,17 @@
+% prop4.tut
+% Classical implication definition II (A=>B) => ~A|B
+
+classical proof classImpDef : (A=>B) => ~A|B =
+begin
+  [ A => B;
+    [ ~(~A | B);
+      [ ~A;
+	~A | B;
+        F ];
+      A;
+      B;
+      ~A | B;
+      F ];
+    ~A|B ];
+  (A=>B) => ~A|B
+end; 
