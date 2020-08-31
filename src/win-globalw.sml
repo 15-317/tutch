@@ -40,8 +40,8 @@ struct
 
   exception Error of string * result
 
-  val reqPath = "Z:\\andrew.cmu.edu\\course\\15\317\\req\\"
-  val submitPath = "Z:\\andrew.cmu.edu\\course\\15\317\\submit\\"
+  val reqPath = "Z:\\andrew.cmu.edu\\course\\15\\317\\req\\"
+  val submitPath = "Z:\\andrew.cmu.edu\\course\\15\\317\\submit\\"
 
   val course = "15-317"
   val administrators = "https://piazza.com/class/j6v67lt0h6b3xx"

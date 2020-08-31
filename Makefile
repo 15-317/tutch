@@ -6,7 +6,7 @@
 # ---------------------------------------------------------------
 
 # What is SML/NJ called?
-sml = /usr/contributed/bin/sml
+sml = sml
 destdir = /afs/andrew/course/15/317/tutch-2017
 # sml = sml
 # destdir = /afs/andrew/scs/cs/15-399/
