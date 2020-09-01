@@ -6,15 +6,6 @@ sig
   exception Error of string * result
 
   val reqPath : string
-  val submitPath : string
-
-  val course : string
-  val administrators : string
-  val submissionEmail : string
-
-  val msgCheckRegistered : string
-  val msgCheckAccess : string
-  val msgContactAdmin : string
 
   val exitOK             : result
   val exitInternalError  : result

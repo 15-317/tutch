@@ -1,3 +1,6 @@
+
+(* THIS FILE IS NO LONGER USED. *)
+
 signature SUBMIT =
 sig
 

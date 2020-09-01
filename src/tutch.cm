@@ -45,6 +45,5 @@ Group is
   parser.sml
   parse-spec.sml
   oslib.sml
-  submit.sml
   reqfile.sml
   top.sml

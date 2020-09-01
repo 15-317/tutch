@@ -55,11 +55,7 @@ struct
         then "Cannot read local requirements file "^name()
         else "Cannot read global requirements file "^name() ^"\n"
 
-  fun error (msg) = raise Global.Error (if isLocal() then msg else msg^
-        "Make sure:\n" ^
-        "- you spelled the file name right\n" ^
-        Global.msgCheckAccess ^
-        Global.msgContactAdmin, Global.exitSpec)
+  fun error (msg) = raise (Global.Error (msg, Global.exitSpec))
 
   fun fileOpenMsg () =
       if Chatter.actions() then print ("[Opening requirements file " ^ name() ^ "]\n")

@@ -1,9 +1,19 @@
 (* $Id: top.sml,v 1.7 2002/10/24 19:25:49 abel Exp $ *)
 
+(* The submission code is too deeply embedded here to remove easily.
+   Instead generate an error if it's used.
+*)
+structure Submit =
+   struct
+
+      fun submit _ = raise (Global.Error ("Submission is not supported.", Global.exitCmdLine))
+
+   end
+
 signature TOP =
 sig
 
-  val top : string * string list -> OS.Process.status
+  val top : string -> string * string list -> OS.Process.status
   val debug : string list -> OS.Process.status
 
 end; (* signature TOP *)
@@ -11,9 +21,9 @@ end; (* signature TOP *)
 structure Top :> TOP =
 struct
 
-  val version = "0.52 beta, $Date: 2002/10/24 19:25:49 $"
+  val version = "0.52C"
+  val buildDate = ref ""
   val tutchVersion = "TUTCH "^version
-  val submitVersion = "SUBMIT "^version
   val tutExt = "tut"
   val valExt = "val"
 
@@ -72,10 +82,17 @@ struct
 
   fun readFiles (fileNames) = readFiles' (fileNames, Global.exitOK)
 
-  fun printVersion (false) =
-      if Chatter.actions() then print (tutchVersion ^ "\n") else ()
-    | printVersion (true) =
-      if Chatter.actions() then print (submitVersion ^ "\n") else ();
+  fun printVersion (_) =
+      if Chatter.actions() then 
+         (
+         print "TUTCH ";
+         print version;
+         print " [built ";
+         print (!buildDate);
+         print "]\n"
+         )
+      else 
+         ()
    
   (* MAIN ACTIONS: help, validate, run *)
 
@@ -102,18 +119,11 @@ struct
     optionsQVH ^
     defaultExt ^
     "If no files are given, but a requirements file 'file[.req]' is specified,\n" ^
-    "'file.tut' will be checked against 'file.req'.\n" ^
-    "Warning: This command DOES NOT SUBMIT your files!\n"); 
+    "'file.tut' will be checked against 'file.req'.\n"); 
     Global.exitCmdLine
     ) 
 
-  fun helpSubmit() = (print (
-    "Usage: submit [options] -r file [files]\n" ^
-    "Checks files against requirements in 'file' and submits the results.\n" ^
-    "If no files are given, 'file.tut' will be checked against 'file.req'.\n" ^
-    "Options:\n" ^
-    optionsQVH
-    ); 
+  fun helpSubmit() = (print "Submission is unsupported.\n";
     Global.exitCmdLine
     ) 
 
@@ -237,8 +247,9 @@ struct
 
   (*  top : string * string list -> OS.Process.status
   *)
-  fun top (name, args) =
-    let val action = parseArgs (args) 
+  fun top date (name, args) =
+    let val () = buildDate := date
+        val action = parseArgs (args) 
     in 
       case action of
 	  Help (submit, msgOpt) => help (submit, msgOpt)
