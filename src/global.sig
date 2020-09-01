@@ -31,5 +31,7 @@ sig
 
   val exitMin :  result *  result ->  result
 
+  val isLocalPath : string -> bool
+
 end (* signature GLOBAL *)
 

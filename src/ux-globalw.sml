@@ -41,4 +41,15 @@ struct
     | exitMin (status, 0) = status
     | exitMin (status, status') = Int.min (status, status')
 
+  fun isLocalPath name =
+    let val {isAbs=isAbs, vol=vol, arcs=arcs} = OS.Path.fromString name
+    in
+       isAbs
+       orelse
+       (case arcs of
+           [] => false
+         | arc :: _ =>
+              arc = OS.Path.parentArc orelse arc = OS.Path.currentArc)
+    end
+
 end (* structure GLOBAL *)

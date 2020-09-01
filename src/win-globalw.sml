@@ -6,8 +6,8 @@ struct
   exception Error of string * result
 
   (* This won't work, but at least it will be clear what it's trying to do. *)
-  val reqPath = "/afs/andrew.cmu.edu/course/15/317/req/"
-  val submitPath = "/afs/andrew.cmu.edu/course/15/317/submit/"
+  val reqPath = "\\afs\\andrew.cmu.edu\\course\\15\\317\\req\\"
+  val submitPath = "\\afs\\andrew.cmu.edu\\course\\15\\317\\submit\\"
 
   val course = "15-317"
   val administrators = "https://piazza.com/class/j6v67lt0h6b3xx"
@@ -42,5 +42,21 @@ struct
   fun exitMin (0w0, status) = status
     | exitMin (status, 0w0) = status
     | exitMin (status, status') = Word32.min (status, status')
+
+  (* We can't rely on OS.Path on Windows, so check it ourselves. *)
+  fun isLocalPath name =
+     (String.sub (name, 0) = #"/"
+      orelse
+      String.sub (name, 0) = #"\\"
+      orelse
+      String.substring (name, 0, 2) = "./"
+      orelse
+      String.substring (name, 0, 2) = ".\\"
+      orelse
+      String.substring (name, 0, 3) = "../"
+      orelse
+      String.substring (name, 0, 3) = "..\\")
+     handle Subscript => false
+     
 
 end (* structure GLOBAL *)

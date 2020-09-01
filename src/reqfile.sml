@@ -38,16 +38,12 @@ struct
   fun name    () = !Data.name
   fun kernel  () = !Data.kernel
 
-  fun isExplicitelyRelative [] = false
-    | isExplicitelyRelative (arc :: arcs) = 
-      arc = OS.Path.parentArc orelse arc = OS.Path.currentArc
-
   fun set (fileName) =
-    let val {isAbs=isAbs, vol=vol, arcs=arcs} = OS.Path.fromString (fileName)
-	val extName = OSLib.addFileExt (fileName, reqExt)
+    let val extName = OSLib.addFileExt (fileName, reqExt)
+        val loc = Global.isLocalPath fileName
     in
-      Data.isLocal := (isAbs orelse isExplicitelyRelative (arcs));
-      Data.name    := (if isLocal() then extName 
+      Data.isLocal := loc;
+      Data.name    := (if loc then extName 
 		      else OS.Path.concat (Global.reqPath, extName));
       Data.kernel  := (OSLib.fileNameKernel (name()))
     end

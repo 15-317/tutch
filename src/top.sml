@@ -231,10 +231,7 @@ struct
     
   in
 
-    fun parseArgs (args) =
-	(case SMLofNJ.SysInfo.getOSKind()
-	   of SMLofNJ.SysInfo.WIN32 => parseArgs' (tl args, [])
-	    | _ => parseArgs' (args, []))
+    fun parseArgs args = parseArgs' (args, [])
 
   end (* local *)
 
