@@ -1,38 +1,3 @@
-signature GLOBAL =
-sig
-
-  type result = OS.Process.status
-
-  exception Error of string * result
-
-  val reqPath : string
-  val submitPath : string
-
-  val course : string
-  val administrators : string
-  val submissionEmail : string
-
-  val msgCheckRegistered : string
-  val msgCheckAccess : string
-  val msgContactAdmin : string
-
-  val exitOK             : result
-  val exitInternalError  : result
-  val exitSysError       : result
-  val exitCmdLine        : result
-  val exitParsing        : result
-  val exitProofInvalid   : result
-  val exitUnjustified    : result
-  val exitWrongGoal      : result
-  val exitTermCheck      : result
-  val exitSpec           : result
-  val exitSpecIncomplete : result
-  val exitSubmission     : result
-
-  val exitMin :  result *  result ->  result
-
-end (* signature GLOBAL *)
-
 structure Global :> GLOBAL =
 struct
 
@@ -40,8 +5,9 @@ struct
 
   exception Error of string * result
 
-  val reqPath = "Z:\\andrew.cmu.edu\\course\\15\\317\\req\\"
-  val submitPath = "Z:\\andrew.cmu.edu\\course\\15\\317\\submit\\"
+  (* This won't work, but at least it will be clear what it's trying to do. *)
+  val reqPath = "/afs/andrew.cmu.edu/course/15/317/req/"
+  val submitPath = "/afs/andrew.cmu.edu/course/15/317/submit/"
 
   val course = "15-317"
   val administrators = "https://piazza.com/class/j6v67lt0h6b3xx"

@@ -20,18 +20,11 @@ Group is
   proofs.sml
   extsyn.sml
   chatter.sml
+  global.sig
 #if defined(OPSYS_UNIX)
-#if (SMLNJ_VERSION >= 110) andalso (SMLNJ_MINOR_VERSION > 6)
   ux-globalw.sml
 #else
-  ux-global.sml
-#endif
-#else
-#if (SMLNJ_VERSION >= 110) andalso (SMLNJ_MINOR_VERSION > 6)
   win-globalw.sml
-#else
-  win-global.sml
-#endif
 #endif
   check-proof.sml
   check-ann-proof.sml
